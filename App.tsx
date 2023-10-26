@@ -63,6 +63,14 @@ function App(): JSX.Element {
   };
 
   return (
+    <ScrollView>
+        <View>
+            <Text>This is a test output - very basic</Text>
+        </View>
+    </ScrollView>
+  );
+
+  /* return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -93,7 +101,7 @@ function App(): JSX.Element {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
+  ); */
 }
 
 const styles = StyleSheet.create({
