@@ -1,12 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -16,7 +8,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -25,102 +16,51 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <ScrollView>
-        <View>
-            <Text>This is a test output - very basic</Text>
-        </View>
+    <ScrollView style={{marginTop: '15%'}}>
+      <View style={styles.container}>
+        <Text style={[styles.curr_glance_data, {fontSize: 50}]}>80 °F</Text>
+        <Text style={styles.curr_glance_data}>85° / 65° Feels like 81°</Text>
+        <Text style={styles.curr_glance_data}>New York City</Text>
+      </View>
+      <View style={styles.container}>
+        <Text>48 Hour Forecast Section</Text>
+      </View>
+      <View style={styles.container}>
+        <Text>7 Day Forecast Section</Text>
+      </View>
+      <View style={styles.container}>
+        <Text>Radar Section</Text>
+      </View>
+      <View style={styles.container}>
+        <Text>Extra Info Section</Text>
+      </View>
     </ScrollView>
   );
-
-  /* return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  ); */
 }
 
+/* All styling */
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  /* all container styling */
+  container: {
+    display: 'flex',
+    margin: 10,
+    padding: 3,
+    textAlign: 'center',
+    backgroundColor: 'rgba(223, 223, 223, 1)',
+    width: '95%',
+    borderRadius: 10,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  /* styling for at a glance data */
+  curr_glance_data: {
+    textAlign: 'center',
+    color: 'rgba(0, 0, 0, 1)',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  row: {},
+  column: {},
 });
 
 export default App;
