@@ -7,6 +7,8 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  PermissionsAndroid,
 } from 'react-native';
 import {
   Colors,
@@ -17,6 +19,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 
+
+/* Ask for location permissions */
+const LocationPermissions = () => {
+  PermissionsAndroid.request(
+    PermissionsAndroid.ACCESS_FINE_LOCATION,
+    PermissionsAndroid.ACCESS_COARSE_LOCATION,
+    PermissionsAndroid.ACCESS_BACKGROUND_LOCATION
+  );
+}
 
 /* Home Page Component */
 const HomePage = () => {

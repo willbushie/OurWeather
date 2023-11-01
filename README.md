@@ -45,11 +45,12 @@ Here are the steps I took to accomplish this project.
 |-- | -- |-- |  
 | Setup README & Git | 10 min | Format README and setup Git repos (local & remote). |
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
-| Simple home page layout | 3 hr 40 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
+| Simple home page layout | 4 hr 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
+| Obtain location data from device | 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 0 min | Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 5 hrs 50 min**
+**Current Project Total: 7 hr 5 min**
 
 ## What I Learned
 
@@ -65,6 +66,9 @@ These are some of the guides/tutorials I followed to help me learn the technolog
 project.
 
 - [Setting up the development environment](https://reactnative.dev/docs/environment-setup?guide=native)
+- [Asking user for permissions (Android) guide](https://dev.to/gautham495/asking-for-permissions-in-react-native-c87)
+- [Android Dev Docs - Request location permissions](https://developer.android.com/training/location/permissions)
+- [React Native Docs - PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
 
 ## Contact
 
