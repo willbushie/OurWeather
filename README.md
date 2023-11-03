@@ -2,6 +2,12 @@
 
 A simple and quick Weather Application created with React Native.
 
+## Inspiration
+
+I haven't found a weather application that I like. One that's fast, doesn't contain ads, and is no-nonsense. I wanted to challenge myself to create a weather application that doesn't have ads, doesn't have news stories or any other nonsense, and is completely self sufficient and free to use (and operate). 
+
+My focus isn't creating an income source, it's creating a simple weather application that I would enjoy using. My only goal is a great user experience (spending as little money as possible on development, and having zero operating costs).
+
 ## Project Goals
 
 The goal is to create a quick, easy to use React Native Android Application.
@@ -16,6 +22,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 - [ ] Give the user a few settings to customize their application experience (refresh period, etc).
 - [ ] Make the application look nice, utilize photos, backdrops, and light/dark themes.
 - [ ] Create a simple home screen widget that will update once every hour.
+- [ ] Release application on the Google Play Store.
 
 # How To Run
 
