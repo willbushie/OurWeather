@@ -15,7 +15,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { RequestFineLocation } from './Components/Permissions.tsx';
+import { RequestFineLocation } from './Handlers/Permissions.tsx';
+import { RequestAllWeatherWithCoordinates } from './Handlers/Networking.tsx';
 
 
 
@@ -107,6 +108,8 @@ const ExtraInfo = () => {};
 function App(): JSX.Element {
   /* Request location permission at application runtime */
   async: RequestFineLocation();
+  /* default coordinate values */
+  async: RequestAllWeatherWithCoordinates();
 
   return (
     <HomePage></HomePage>
