@@ -76,6 +76,10 @@ project.
 - [Asking user for permissions (Android) guide](https://dev.to/gautham495/asking-for-permissions-in-react-native-c87)
 - [Android Dev Docs - Request location permissions](https://developer.android.com/training/location/permissions)
 - [React Native Docs - PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
+- Location Permission Resources
+   - [Asking for permissions at runtime (StackOverflow)](https://stackoverflow.com/questions/45822318/how-do-i-request-permission-for-android-device-location-in-react-native-at-run-t)
+   - [PermissionsAndroid | React Native Docs](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
+   - [Request Location Permissions | Android Dev Docs](https://developer.android.com/develop/sensors-and-location/location/permissions)
 
 ## Contact
 
