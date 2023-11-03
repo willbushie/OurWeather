@@ -7,8 +7,6 @@ import {
   Text,
   useColorScheme,
   View,
-  Button,
-  PermissionsAndroid,
 } from 'react-native';
 import {
   Colors,
@@ -17,17 +15,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { RequestFineLocation } from './Components/Permissions.tsx';
 
 
-
-/* Ask for location permissions */
-const LocationPermissions = () => {
-  PermissionsAndroid.request(
-    PermissionsAndroid.ACCESS_FINE_LOCATION,
-    PermissionsAndroid.ACCESS_COARSE_LOCATION,
-    PermissionsAndroid.ACCESS_BACKGROUND_LOCATION
-  );
-}
 
 /* Home Page Component */
 const HomePage = () => {
@@ -115,6 +105,9 @@ const ExtraInfo = () => {};
 
 /* Application returned */
 function App(): JSX.Element {
+  /* Request location permission at application runtime */
+  async: RequestFineLocation();
+
   return (
     <HomePage></HomePage>
   );
