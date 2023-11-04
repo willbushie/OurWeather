@@ -54,11 +54,11 @@ Here are the steps I took to accomplish this project.
 | Setup README & Git | 10 min | Format README and setup Git repos (local & remote). |
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
 | Simple home page layout | 4 hr 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
-| Obtain location data from device | 2 hrs 40 min | Research & obtain location permissions from user device for precise current location weather. | 
+| Obtain location data from device | 4 hrs 15 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 1 hr | Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 9 hrs 55 min**
+**Current Project Total: 11 hrs 30 min**
 
 ## What I Learned
 
@@ -81,6 +81,9 @@ project.
    - [Asking for permissions at runtime (StackOverflow)](https://stackoverflow.com/questions/45822318/how-do-i-request-permission-for-android-device-location-in-react-native-at-run-t)
    - [PermissionsAndroid | React Native Docs](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
    - [Request Location Permissions | Android Dev Docs](https://developer.android.com/develop/sensors-and-location/location/permissions)
+- Geolocation Resources
+  - [react-native-geolocation-service | README](https://github.com/Agontuk/react-native-geolocation-service#readme)
+  - [Obtain Lat & Long (StackOverflow)](https://stackoverflow.com/questions/66245245/how-store-latitude-and-longitude-from-navigator-geolocation-getcurrentposition)
 
 ## Contact
 
