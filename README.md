@@ -39,6 +39,7 @@ Here is a list of packages and resources that are needed for the codebase to fun
 - Java Development
   Kit ([JDK11 Download](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html))
 - Android Studio ([Download](https://developer.android.com/studio))
+- react-native-geolocation-service ([GitHub](https://github.com/Agontuk/react-native-geolocation-service) | [npm](https://www.npmjs.com/package/react-native-geolocation-service))
 
 # Takeaways
 
