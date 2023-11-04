@@ -16,12 +16,12 @@ export async function RequestFineLocation() {
     )
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       console.log('Location access granted')
-      /* This is a dev alert - commented out for user */
+      /* This is a dev alert - comment out for user */
       //alert('Location access granted');
     }
     else {
       console.log('Location access denied')
-      /* This is a dev alert - commented out for user */
+      /* This is a dev alert - comment out for user */
       //alert('Location access denied');
     }
   }

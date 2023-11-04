@@ -12,6 +12,7 @@ export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', 
       url,
     );
     const json = await response.json();
+    /* This is a dev alert - comment out for user */
     alert(json.geometry.coordinates);
   }
   catch (error) {
