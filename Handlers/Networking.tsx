@@ -36,7 +36,7 @@ export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', 
     alert(json.geometry.coordinates);
   }
   catch (error) {
-    console.error(error);
+    console.error('./Handlers/Networking.tsx:RequestAllWeatherWithCoordinates:', error);
   }
 };
 
@@ -50,14 +50,16 @@ export async function GetCoordinates() {
   if (hasLocationPermission) {
     Geolocation.getCurrentPosition(
       (position) => {
-        console.log(position);
+        console.log('./Handlers/Networking.tsx:GetCoordinates:', position);
         lat = position.coords.latitude;
         long = position.coords.longitude;
-        alert('lat: ' + lat + ',' + ' long: ' + long);
+        //alert('lat: ' + lat + ',' + ' long: ' + long);
+        console.log('./Handlers/Networking.tsx:GetCoordinates:', {'lat':lat, 'long':long});
+        return {'lat':lat, 'long':long};
       },
       (error) => {
         // See error code charts below.
-        console.log(error.code, error.message);
+        console.log('./Handlers/Networking.tsx:GetCoordinates:', error.code, error.message);
       },
       { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
     );

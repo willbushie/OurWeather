@@ -15,17 +15,17 @@ export async function RequestFineLocation() {
       }
     )
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('Location access granted')
+      console.log('./Handlers/Permission.tsx:RequestFineLocation: Location access granted')
       /* This is a dev alert - comment out for user */
       //alert('Location access granted');
     }
     else {
-      console.log('Location access denied')
+      console.log('./Handlers/Permission.tsx:RequestFineLocation: Location access denied')
       /* This is a dev alert - comment out for user */
       //alert('Location access denied');
     }
   }
   catch (err) {
-    console.warn(err)
+    console.warn('./Handlers/Permission.tsx:RequestFineLocation: ', err)
   }
 }
