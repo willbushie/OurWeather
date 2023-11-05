@@ -14,7 +14,26 @@ import Geolocation from 'react-native-geolocation-service';
  *
  * @return array
  */
-export async function Update() {}
+export async function Update() {
+  try {
+    const coordinates = GetCoordinates();
+    lat = await coordinates.lat;
+    long = await coordinates.long;
+    const init_data = await RequestAllWeatherWithCoordinates(lat, long);
+    const seven_day_data = RequestSevenDayWeather(await init_data.seven_day_url);
+    const forty_eight_hour_data = RequestFortyEightHourWeather(await init_data.forty_eight_hour_url);
+    const all_data = {
+      'init_data': init_data,
+      'seven_day_data': seven_day_data,
+      'forty_eight_hour_data': forty_eight_hour_data
+    };
+    //console.log('./Handlers/Networking.tsx:Update:', all_data);
+    return all_data;
+  }
+  catch (error) {
+    console.error('./Handlers/Networking.tsx:Update:', error.message);
+  }
+};
 
 /**
  * Request all weather data using device coordinates
@@ -32,8 +51,17 @@ export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', 
       url,
     );
     const json = await response.json();
-    /* This is a dev alert - comment out for user */
-    alert(json.geometry.coordinates);
+    const init_data = {
+      'grid_id': json.properties.gridId,
+      'grid_x': json.properties.gridX,
+      'grid_y': json.properties.gridY,
+      'seven_day_url': json.properties.forecast,
+      'forty_eight_hour_url': json.properties.forecastHourly,
+      'city_name': json.properties.relativeLocation.properties.city,
+      'state_name': json.properties.relativeLocation.properties.state,
+      'timezone': json.properties.timeZone
+    };
+    return init_data;
   }
   catch (error) {
     console.error('./Handlers/Networking.tsx:RequestAllWeatherWithCoordinates:', error);
@@ -41,9 +69,65 @@ export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', 
 };
 
 /**
+ * Request all 7 day weather data
+ *
+ * @param string url
+ *
+ * @return array
+ */
+export async function RequestSevenDayWeather(url) {
+  try {
+    const response = await fetch(
+      url,
+    );
+    const json = await response.json();
+    /* This is a dev alert - comment out for user */
+    const seven_day_data = {
+      'updated': json.properties.updated,
+      'generated_at': json.properties.generatedAt,
+      'update_time': json.properties.updateTime,
+      'elevation_val': json.properties.elevation.value,
+      'all_periods': json.properties.periods
+    };
+    return seven_day_data;
+  }
+  catch (error) {
+    console.error('./Handlers/Networking.tsx:RequestSevenDayWeather:', error);
+  }
+};
+
+/**
+ * Request all 48 hour weather data
+ *
+ * @param string url
+ *
+ * @return array
+ */
+export async function RequestFortyEightHourWeather(url) {
+  try {
+    const response = await fetch(
+      url,
+    );
+    const json = await response.json();
+    /* This is a dev alert - comment out for user */
+    const forty_eight_hour_data = {
+      'updated': json.properties.updated,
+      'generated_at': json.properties.generatedAt,
+      'update_time': json.properties.updateTime,
+      'elevation_val': json.properties.elevation.value,
+      'all_periods': json.properties.periods
+    };
+    return forty_eight_hour_data;
+  }
+  catch (error) {
+    console.error('./Handlers/Networking.tsx:RequestFortyEightHourWeather:', error);
+  }
+};
+
+/**
  * Get user coordinates for current weather API call
  *
- *
+ * @return array
  */
 export async function GetCoordinates() {
   const hasPermission = await hasLocationPermission();
@@ -53,8 +137,6 @@ export async function GetCoordinates() {
         console.log('./Handlers/Networking.tsx:GetCoordinates:', position);
         lat = position.coords.latitude;
         long = position.coords.longitude;
-        //alert('lat: ' + lat + ',' + ' long: ' + long);
-        console.log('./Handlers/Networking.tsx:GetCoordinates:', {'lat':lat, 'long':long});
         return {'lat':lat, 'long':long};
       },
       (error) => {

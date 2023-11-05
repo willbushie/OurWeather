@@ -16,7 +16,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 - [x] Setup Android Studio for Emulator & external device testing.
 - [ ] Setup a simple home page layout for displaying current and forecasted weather information.
 - [ ] Separate code files and document extensively as if other developers were working on this project.
-- [ ] Obtain a devices current location (longitude & latitude), for fetching from weather API.
+- [x] Obtain a devices current location (longitude & latitude), for fetching from weather API.
 - [ ] Fetch weather data from the NOAA API and display it to the user.
 - [ ] Allow the user to save multiple locations to check weather in more than just the current location.
 - [ ] Give the user a few settings to customize their application experience (refresh period, etc).
@@ -55,10 +55,10 @@ Here are the steps I took to accomplish this project.
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
 | Simple home page layout | 4 hr 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
 | Obtain location data from device | 4 hrs 15 min | Research & obtain location permissions from user device for precise current location weather. | 
-| API Data | 1 hr | Fetch forecast data from NOAA API and output to application. |
+| API Data | 2 hr 45 min | Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 11 hrs 30 min**
+**Current Project Total: 13 hrs 15 min**
 
 ## What I Learned
 
@@ -84,6 +84,8 @@ project.
 - Geolocation Resources
   - [react-native-geolocation-service | README](https://github.com/Agontuk/react-native-geolocation-service#readme)
   - [Obtain Lat & Long (StackOverflow)](https://stackoverflow.com/questions/66245245/how-store-latitude-and-longitude-from-navigator-geolocation-getcurrentposition)
+- Asynchronous Programming
+  - [Typescript `async/await`](https://blog.logrocket.com/async-await-in-typescript/)
 
 ## Contact
 

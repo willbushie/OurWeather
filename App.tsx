@@ -16,7 +16,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { RequestFineLocation } from './Handlers/Permissions.tsx';
-import { GetCoordinates } from './Handlers/Networking.tsx';
+import { Update } from './Handlers/Networking.tsx';
 
 
 
@@ -109,8 +109,8 @@ function App(): JSX.Element {
   /* Request location permission at application runtime */
   async: RequestFineLocation();
 
-  /* obtain user coordinates */
-  async: GetCoordinates();
+  /* Test Getting all update info */
+  async: Update();
 
   return (
     <HomePage></HomePage>
