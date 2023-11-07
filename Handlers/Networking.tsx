@@ -22,10 +22,12 @@ export async function Update() {
     const init_data = await RequestAllWeatherWithCoordinates(lat, long);
     const seven_day_data = RequestSevenDayWeather(await init_data.seven_day_url);
     const forty_eight_hour_data = RequestFortyEightHourWeather(await init_data.forty_eight_hour_url);
+    const grid_data = RequestGridData(await init_data.grid_data_url)
     const all_data = {
       'init_data': init_data,
       'seven_day_data': await seven_day_data,
-      'forty_eight_hour_data': await forty_eight_hour_data
+      'forty_eight_hour_data': await forty_eight_hour_data,
+      'grid_data': await grid_data
     };
     //console.log('./Handlers/Networking.tsx:Update:', all_data);
     return all_data;
@@ -57,6 +59,7 @@ export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', 
       'grid_y': json.properties.gridY,
       'seven_day_url': json.properties.forecast,
       'forty_eight_hour_url': json.properties.forecastHourly,
+      'grid_data_url': json.properties.forecastGridData,
       'city_name': json.properties.relativeLocation.properties.city,
       'state_name': json.properties.relativeLocation.properties.state,
       'timezone': json.properties.timeZone
@@ -121,6 +124,32 @@ export async function RequestFortyEightHourWeather(url) {
   }
   catch (error) {
     console.error('./Handlers/Networking.tsx:RequestFortyEightHourWeather:', error);
+  }
+};
+
+/**
+ * Request further grid data
+ *
+ * @param string url
+ *
+ * @return array
+ */
+export async function RequestGridData(url) {
+  try {
+    const response = await fetch(
+      url,
+    );
+    const json = await response.json();
+    /* This is a dev alert - comment out for user */
+    const grid_data = {
+      'update_time': json.properties.updateTime,
+      'max_temps': json.properties.maxTemperature,
+      'min_temps': json.properties.minTemperatures
+    };
+    return grid_data;
+  }
+  catch (error) {
+    console.error('./Handlers/Networking.tsx:RequestGridData:', error);
   }
 };
 
