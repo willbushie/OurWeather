@@ -144,7 +144,7 @@ export async function RequestGridData(url) {
     const grid_data = {
       'update_time': json.properties.updateTime,
       'max_temps': json.properties.maxTemperature,
-      'min_temps': json.properties.minTemperatures
+      'min_temps': json.properties.minTemperature
     };
     return grid_data;
   }
