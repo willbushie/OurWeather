@@ -24,8 +24,8 @@ export async function Update() {
     const forty_eight_hour_data = RequestFortyEightHourWeather(await init_data.forty_eight_hour_url);
     const all_data = {
       'init_data': init_data,
-      'seven_day_data': seven_day_data,
-      'forty_eight_hour_data': forty_eight_hour_data
+      'seven_day_data': await seven_day_data,
+      'forty_eight_hour_data': await forty_eight_hour_data
     };
     //console.log('./Handlers/Networking.tsx:Update:', all_data);
     return all_data;
