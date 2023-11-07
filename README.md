@@ -15,9 +15,9 @@ The goal is to create a quick, easy to use React Native Android Application.
 - [x] Setup React, Node.js, & JDK.
 - [x] Setup Android Studio for Emulator & external device testing.
 - [ ] Setup a simple home page layout for displaying current and forecasted weather information.
-- [ ] Separate code files and document extensively as if other developers were working on this project.
+- [x] Separate code files and document extensively as if other developers were working on this project.
 - [x] Obtain a devices current location (longitude & latitude), for fetching from weather API.
-- [ ] Fetch weather data from the NOAA API and display it to the user.
+- [x] Fetch weather data from the NOAA API and display it to the user.
 - [ ] Allow the user to save multiple locations to check weather in more than just the current location.
 - [ ] Give the user a few settings to customize their application experience (refresh period, etc).
 - [ ] Make the application look nice, utilize photos, backdrops, and light/dark themes.
@@ -53,12 +53,12 @@ Here are the steps I took to accomplish this project.
 |-- | -- |-- |  
 | Setup README & Git | 10 min | Format README and setup Git repos (local & remote). |
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
-| Simple home page layout | 4 hr 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
+| Simple home page layout | 4 hrs 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
 | Obtain location data from device | 4 hrs 15 min | Research & obtain location permissions from user device for precise current location weather. | 
-| API Data | 2 hr 45 min | Fetch forecast data from NOAA API and output to application. |
+| API Data | 8 hrs 20 min| Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 13 hrs 15 min**
+**Current Project Total: 18 hrs 50 min**
 
 ## What I Learned
 

@@ -18,31 +18,65 @@ import {
 
 
 
+/* Props for HomePage component */
+type HomePageProps = {
+  update_data: array;
+};
+
 /* Home Page Component */
-export const HomePage = () => {
+export const HomePage = (props) => {
+  const init_data = props.update_data.init_data;
+  const seven_day_data = props.update_data.seven_day_data;
+  const forty_eight_hour_data = props.update_data.forty_eight_hour_data;
+  const grid_data = props.update_data.grid_data;
+
   return (
     <ScrollView style={{marginTop: '15%'}}>
-      <CurrentWeather />
+      <CurrentWeather
+        city={init_data.city_name}
+        state={init_data.state_name}
+        hour_period={forty_eight_hour_data.all_periods[0]}
+        max_temps={grid_data.max_temps}
+        min_temps={grid_data.min_temps}
+      />
       <FortyEightHourForecast />
     </ScrollView>
   );
 };
 
+/* Props for Current Weather Component */
+type CurrentWeatherProps = {
+  city: string;
+  state: string;
+  hour_period: array;
+  max_temps: array;
+  min_temps: array;
+};
+
 /* Current Weather Data - Home Page Component */
-const CurrentWeather = () => {
-  const dummy_data = {
-    'curr_temp':'80 °F',
-    'day_high':'85°',
-    'day_low':'65°',
-    'feels_like':'81°',
-    'location':'New York City'
-  };
+const CurrentWeather = (props) => {
+  const start_time = props.hour_period.startTime;
+  const end_time = props.hour_period.endTime;
+  const curr_temp = props.hour_period.temperature;
+  const curr_temp_unit = props.hour_period.temperatureUnit;
+  const day_time = props.hour_period.isDayTime;
+  const precip_percent = props.hour_period.probabilityOfPrecipitation.value;
+  const wind_speed = props.hour_period.windSpeed;
+  const wind_direction = props.hour_period.windDirection;
+  const icon_url = props.hour_period.icon;
+  const short_forecast = props.hour_period.short_forecast;
+  const max_temp = props.max_temps.values[0].value;
+  const max_temp_unit = props.max_temps.uom[props.max_temps.uom.length - 1];
+  const min_temp = props.min_temps.values[0].value;
+  const min_temp_unit = props.min_temps.uom[props.min_temps.uom.length - 1];
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.curr_glance_data, {fontSize: 50}]}>{dummy_data['curr_temp']}</Text>
-      <Text style={styles.curr_glance_data}>{dummy_data['day_high']} / {dummy_data['day_low']} Feels like {dummy_data['feels_like']}</Text>
-      <Text style={styles.curr_glance_data}>{dummy_data['location']}</Text>
+      <Text style={[styles.curr_glance_data, {fontSize: 50}]}>{curr_temp} °{curr_temp_unit}</Text>
+      <Text style={styles.curr_glance_data}>
+        {ConvertCelsiusToFahrenheit(max_temp)} / {ConvertCelsiusToFahrenheit(min_temp)}
+      </Text>
+      <Text style={styles.curr_glance_data}>{props.city}, {props.state}</Text>
     </View>
   );
 };
