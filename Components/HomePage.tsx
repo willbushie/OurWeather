@@ -101,6 +101,17 @@ const Radar = () => {};
 /* Extra Current Info - Home Page Component */
 const ExtraInfo = () => {};
 
+/**
+ * Convert Celsius to Fahrenheit
+ *
+ * @param int temp
+ *
+ * @return int
+ */
+function ConvertCelsiusToFahrenheit(temp) {
+    return (temp * 1.8) + 32;
+}
+
 /* All styling */
 const styles = StyleSheet.create({
   /* parent container styling */
