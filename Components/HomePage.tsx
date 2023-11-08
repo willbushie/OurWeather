@@ -118,7 +118,13 @@ const FortyEightHourSingleHour = ({period}) => {
 };
 
 /* 7 Day Forecast - Home Page Component */
-const SevenDayForecast = () => {};
+const SevenDayForecast = ({seven_day_data}) => {
+  return (
+    <View style={[styles.container, {flexDirection: 'column'}]}>
+      <SevenDayForecastSingleDay />
+    </View>
+  );
+};
 
 /* 7 Day Forecast - Single Day Forecast */
 const SevenDayForecastSingleDay = () => {};
