@@ -7,6 +7,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image,
 } from 'react-native';
 import {
   Colors,
@@ -39,7 +40,7 @@ export const HomePage = (props) => {
         max_temps={grid_data.max_temps}
         min_temps={grid_data.min_temps}
       />
-      <FortyEightHourForecast />
+      <FortyEightHourForecast forty_eight_hour_data={forty_eight_hour_data} />
     </ScrollView>
   );
 };
@@ -82,43 +83,36 @@ const CurrentWeather = (props) => {
 };
 
 /* 48 Hour Forecast - Home Page Component */
-const FortyEightHourForecast = () => {
+const FortyEightHourForecast = ({forty_eight_hour_data}) => {
+  const all_periods = forty_eight_hour_data.all_periods;
   return (
     <View style={[styles.container, {flexDirection: 'row'}]}>
       <ScrollView horizontal={true}>
-        <FortyEightHourSingleHour time='4PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='5PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='6PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='7PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='8PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='9PM' temp='87°' picture='Clear' precipitation='0%'/>
-        <FortyEightHourSingleHour time='10PM' temp='87°' picture='Clear' precipitation='15%'/>
-        <FortyEightHourSingleHour time='11PM' temp='87°' picture='Clear' precipitation='40%'/>
-        <FortyEightHourSingleHour time='12AM' temp='87°' picture='Clear' precipitation='50%'/>
-        <FortyEightHourSingleHour time='1AM' temp='87°' picture='Clear' precipitation='20%'/>
-        <FortyEightHourSingleHour time='2AM' temp='87°' picture='Clear' precipitation='10%'/>
+        {all_periods.slice(0,48).map((period) => (
+          <FortyEightHourSingleHour key={period.number} period={period}/>
+        ))}
       </ScrollView>
     </View>
   );
 };
 
-/* Props for 48 Hour Forecast - Single Hour Component */
-type FortyEightHourSingleHourProps = {
-  time: string;
-  temp: string;
-  /* vvv this is only a string for the time being vvv */
-  picture: string;
-  precipitation: string;
-};
-
 /* 48 Hour Forecast - Single Hour Component */
-const FortyEightHourSingleHour = (props: FortyEightHourSingleHourProps) => {
+const FortyEightHourSingleHour = ({period}) => {
+  // this time should be converted to an actual time
+  const start_time = ConvertISOTime(period.startTime);
+  const day_time = period.isDayTime;
+  const temp = period.temperature;
+  const temp_unit = period.temperatureUnit;
+  const precip_percent = period.probabilityOfPrecipitation.value;
+  const icon_url = period.icon;
+  const short_forecast = period.shortForecast;
+
   return (
     <View style={styles.hour_container}>
-      <Text>{props.time}</Text>
-      <Text>{props.temp}</Text>
-      <Text>{props.picture}</Text>
-      <Text>{props.precipitation}</Text>
+      <Text>{start_time}</Text>
+      <Text>{temp}</Text>
+      <Text></Text>
+      <Text>{precip_percent}%</Text>
     </View>
   );
 };
@@ -144,6 +138,19 @@ const ExtraInfo = () => {};
  */
 function ConvertCelsiusToFahrenheit(temp) {
     return (temp * 1.8) + 32;
+}
+
+/**
+ * Convert ISO8601 to Hour
+ *
+ * @param string time
+ *  example input: '2023-11-07T21:00:00-06:00'
+ *
+ * @return string
+ *  expected output: '9PM'
+ */
+function ConvertISOTime(time: string) {
+    return '0AM';
 }
 
 /* All styling */
