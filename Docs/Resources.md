@@ -1,0 +1,61 @@
+# Resources
+
+This document contains resources that were helpful during development. Some of the sources listed may no longer be available, apologies if that is the case.
+
+Each link will contain a short description on the contents and where it was helpful. This document is constantly changing and will likely never be "complete."
+
+## Environment Setup
+
+Setting up the development environment for a React Native application can be confusing and difficult. These are helpful resources which walk through how to setup the development environment and other helpful tips. Also see [this document](Setup.md).
+
+[Setting up the development environment](https://reactnative.dev/docs/environment-setup?guide=native)
+
+This guide is very helpful and referenced in the Setup document (found [here](Setup.md)).
+
+## NOAA API
+
+These are links that pertain to the NOAA API. This API is completely free to use for any purpose. 
+
+[NOAA API Overview](https://www.weather.gov/documentation/services-web-api#/default/radar_servers)
+
+This is an overview page of the NOAA API. *"All of the information presented via the API is intended to be open data, free to use for any purpose."* This page is helpful in understanding the API and how to make calls to it. The documentation is not the greatest, though, so keep that in mind. 
+
+## Android Location Permissions
+
+Asking the user for permissions can be confusing. This was a tough concept at first and a lot of time was spent trying to get this working. 
+
+[Asking for permissions at runtime (Stackoverflow)](https://stackoverflow.com/questions/45822318/how-do-i-request-permission-for-android-device-location-in-react-native-at-run-t)
+
+Asking for permissions at application runtime is not always best practice. It is usually encouraged to ask for permissions for a specific feature of an application. However, sometimes it is necessary to ask for permissions at runtime, this Stackoverflow question covers how to do that. 
+
+[PermissionsAndroid | React Native Docs](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
+
+`PermissionsAndroid` is how React Native interacts with Android specific permissions. This is the documentation for this feature.
+
+[Request Location Permissions | Android Dev Docs](https://developer.android.com/develop/sensors-and-location/location/permissions)
+
+This is the official Android documentation regarding requesting location permissions. This is not super helpful for React Native applications, but may still be referenced. 
+
+[Asking user for permissions (Android) guide](https://dev.to/gautham495/asking-for-permissions-in-react-native-c87)
+
+This guide covers how to ask a user for permissions (Android). It is very helpful and discusses well what to do and why it is needed.
+
+## Geolocation
+
+Geolocation is an important aspect of any app that requires real-time-access to location data. These sources cover how to use 3rd party repositories to access and interact with device (Android) location information. 
+
+[react-native-geolocation-service](https://github.com/Agontuk/react-native-geolocation-service)
+
+This is a repository often recommended for React Native Geolocation. It offers capabilities for both Android and IOS devices. [Here](https://www.npmjs.com/package/react-native-geolocation-service) is the npmjs page, which covers installation, compatibility, setup, and usage. 
+
+[Obtain Lat & Long (StackOverflow)](https://stackoverflow.com/questions/66245245/how-store-latitude-and-longitude-from-navigator-geolocation-getcurrentposition)
+
+Although the `navigator.geolocation.GetCurrentPosition()` code is not used in the codebase, this Stackoverflow question sheds some light on how to obtain that information with [react-native-geolocation-service](https://github.com/Agontuk/react-native-geolocation-service).
+
+## Asynchronous Programming
+
+Asynchronous programming can be confusing and in full stack applications, it is a must. These resources explain the basics, along with more detailed items on using and thinking about asynchronous programming. 
+
+[Typescript `async/await`](https://blog.logrocket.com/async-await-in-typescript/)
+
+This article explains asynchronous programming in typescript a bit more, and covers specifics like promises, async/await, try/catch, and other helpful asynchronous things.

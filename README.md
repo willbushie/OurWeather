@@ -40,6 +40,12 @@ Here is a list of packages and resources that are needed for the codebase to fun
 - Android Studio ([Download](https://developer.android.com/studio))
 - react-native-geolocation-service ([GitHub](https://github.com/Agontuk/react-native-geolocation-service) | [npm](https://www.npmjs.com/package/react-native-geolocation-service))
 
+## APIs
+
+This is a list of all APIs used for this project. Similar to dependencies, without these APIs, this application would not function.
+
+- [NOAA API | Overview](https://www.weather.gov/documentation/services-web-api#/default/radar_servers)
+
 # Takeaways
 
 Here are the things I learned and took away from this project.
@@ -49,15 +55,16 @@ Here are the things I learned and took away from this project.
 Here are the steps I took to accomplish this project.
 
 | Description | Total Time | Explanation |
-|-- | -- |-- |  
+|--|--|--|
 | Setup README & Git | 10 min | Format README and setup Git repos (local & remote). |
+| Documentation | 50 min | Further documentation for the project and codebase. |
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
 | Simple home page layout | 5 hrs 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
 | Obtain location data from device | 4 hrs 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 20 hrs 25 min**
+**Current Project Total: 21 hrs 15 min**
 
 ## What I Learned
 
@@ -69,22 +76,7 @@ A list of things that I learned during this project.
 
 ## Resources
 
-These are some of the guides/tutorials I followed to help me learn the technologies used in this
-project.
-
-- [Setting up the development environment](https://reactnative.dev/docs/environment-setup?guide=native)
-- [Asking user for permissions (Android) guide](https://dev.to/gautham495/asking-for-permissions-in-react-native-c87)
-- [Android Dev Docs - Request location permissions](https://developer.android.com/training/location/permissions)
-- [React Native Docs - PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
-- Location Permission Resources
-   - [Asking for permissions at runtime (StackOverflow)](https://stackoverflow.com/questions/45822318/how-do-i-request-permission-for-android-device-location-in-react-native-at-run-t)
-   - [PermissionsAndroid | React Native Docs](https://reactnative.dev/docs/permissionsandroid#permissions-that-require-prompting-the-user)
-   - [Request Location Permissions | Android Dev Docs](https://developer.android.com/develop/sensors-and-location/location/permissions)
-- Geolocation Resources
-  - [react-native-geolocation-service | README](https://github.com/Agontuk/react-native-geolocation-service#readme)
-  - [Obtain Lat & Long (StackOverflow)](https://stackoverflow.com/questions/66245245/how-store-latitude-and-longitude-from-navigator-geolocation-getcurrentposition)
-- Asynchronous Programming
-  - [Typescript `async/await`](https://blog.logrocket.com/async-await-in-typescript/)
+This list has become very long. To view the list and what resources were helpful, they can be found [here](./Docs/Resources.md).
 
 ## Contact
 
