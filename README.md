@@ -54,11 +54,11 @@ Here are the steps I took to accomplish this project.
 | Setup README & Git | 10 min | Format README and setup Git repos (local & remote). |
 | Setup development environment | 2 hrs | Download all dependencies & setup Android Studio. Had some issues getting device emulation to work correctly. |
 | Simple home page layout | 4 hrs 5 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
-| Obtain location data from device | 4 hrs 15 min | Research & obtain location permissions from user device for precise current location weather. | 
+| Obtain location data from device | 4 hrs 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 8 hrs 20 min| Fetch forecast data from NOAA API and output to application. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 18 hrs 50 min**
+**Current Project Total: 19 hrs 25 min**
 
 ## What I Learned
 

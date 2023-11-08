@@ -16,9 +16,9 @@ import Geolocation from 'react-native-geolocation-service';
  */
 export async function Update() {
   try {
-    const coordinates = GetCoordinates();
-    lat = await coordinates.lat;
-    long = await coordinates.long;
+    const coordinates = await GetCoordinates();
+    const lat = coordinates.lat;
+    const long = coordinates.long;
     const init_data = await RequestAllWeatherWithCoordinates(lat, long);
     const seven_day_data = RequestSevenDayWeather(await init_data.seven_day_url);
     const forty_eight_hour_data = RequestFortyEightHourWeather(await init_data.forty_eight_hour_url);
@@ -45,7 +45,7 @@ export async function Update() {
  *
  * @return array
  */
-export async function RequestAllWeatherWithCoordinates(lat: string = '39.7456', long: string = '-97.0892') {
+export async function RequestAllWeatherWithCoordinates(lat, long) {
   const url = 'https://api.weather.gov/points/' + lat + ',' + long;
 
   try {
@@ -160,22 +160,27 @@ export async function RequestGridData(url) {
  */
 export async function GetCoordinates() {
   const hasPermission = await hasLocationPermission();
-  if (hasLocationPermission) {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        console.log('./Handlers/Networking.tsx:GetCoordinates:', position);
-        lat = position.coords.latitude;
-        long = position.coords.longitude;
-        return {'lat':lat, 'long':long};
-      },
-      (error) => {
-        // See error code charts below.
-        console.log('./Handlers/Networking.tsx:GetCoordinates:', error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    );
-  }
-};
+  return new Promise((resolve, reject) => {
+    if (hasPermission) {
+      Geolocation.getCurrentPosition(
+        (position) => {
+          console.log('./Handlers/Networking.tsx:GetCoordinates:', position);
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+          resolve({ lat, long });
+        },
+        (error) => {
+          // See error code charts below.
+          console.log('./Handlers/Networking.tsx:GetCoordinates:', error.code, error.message);
+          reject(error);
+        },
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+      );
+    } else {
+      reject(new Error("Location permission not granted"));
+    }
+  });
+}
 
 /**
  * Check if user has granted location permission
