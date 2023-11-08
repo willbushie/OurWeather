@@ -16,6 +16,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 - [x] Setup Android Studio for Emulator & external device testing.
 - [ ] Setup a simple home page layout for displaying current and forecasted weather information.
 - [x] Separate code files and document extensively as if other developers were working on this project.
+- [ ] Maintain helpful and extensive documentation as though other developers were working on this project.
 - [x] Obtain a devices current location (longitude & latitude), for fetching from weather API.
 - [x] Fetch weather data from the NOAA API and display it to the user.
 - [ ] Allow the user to save multiple locations to check weather in more than just the current location.
@@ -26,9 +27,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 
 # How To Run
 
-It is recommended to follow [this](https://reactnative.dev/docs/environment-setup?guide=native)
-tutorial. The tutorial listed walks through installing all dependencies and Android studio setup for
-device emulation too.
+If local development is desired, please refer to [this](./Docs/Setup.md) document for more details.
 
 ## Project Dependencies
 
