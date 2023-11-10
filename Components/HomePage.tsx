@@ -159,7 +159,29 @@ const SevenDayForecastSingleDay = ({period}) => {
 const Radar = () => {};
 
 /* Extra Current Info - Home Page Component */
-const ExtraInfo = () => {};
+const ExtraInfo = ({}) => {
+  return (
+    <View>
+      <ExtraInfoHumidity />
+      <ExtraInfoWind />
+    </View>
+  );
+};
+
+/* Extra Current Info - Humidity */
+const ExtraInfoHumidity = ({}) => {};
+
+/* Extra Current Info - Wind */
+const ExtraInfoWind = ({}) => {};
+
+/* Extra Current Info - UV Index */
+const ExtraInfoUVIndex = ({}) => {};
+
+/* Extra Current Info - Air Quality Index */
+const ExtraInfoAQI = ({}) => {};
+
+/* Extra Current Info - Pollen */
+const ExtraInfoPollen = ({}) => {};
 
 /**
  * Convert Celsius to Fahrenheit
