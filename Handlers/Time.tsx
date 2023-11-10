@@ -92,7 +92,7 @@ export function ConvertISOTime(timestamp: string) {
               'military': api_military,
               'minute': api_minute,
               'second': api_second,
-              'day_nigh': api_day_night,
+              'day_night': api_day_night,
               'offset': utc_offset
           }
       }
