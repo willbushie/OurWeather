@@ -16,6 +16,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { ConvertISOTime } from 'Time.tsx';
 
 
 
@@ -192,19 +193,6 @@ const ExtraInfoPollen = ({}) => {};
  */
 function ConvertCelsiusToFahrenheit(temp) {
     return (temp * 1.8) + 32;
-}
-
-/**
- * Convert ISO8601 to Hour
- *
- * @param string time
- *  example input: '2023-11-07T21:00:00-06:00'
- *
- * @return string
- *  expected output: '9PM'
- */
-function ConvertISOTime(time: string) {
-    return '0AM';
 }
 
 /* All styling */

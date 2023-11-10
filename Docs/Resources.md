@@ -59,3 +59,11 @@ Asynchronous programming can be confusing and in full stack applications, it is 
 [Typescript `async/await`](https://blog.logrocket.com/async-await-in-typescript/)
 
 This article explains asynchronous programming in typescript a bit more, and covers specifics like promises, async/await, try/catch, and other helpful asynchronous things.
+
+## Date And Time Handling
+
+Since this application is small, it was decided to make a custom time handler. This file (found [here](../Handlers/Time.tsx)) can handle [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) timestamps and convert them into usable data for other functions and components. Here are a few resources that were helpful while building out this capability.
+
+[Timestamp Converter](https://www.timestamp-converter.com/)
+
+This timestamp converter was very useful for quick testing and checking against other kinds of timestamps.
