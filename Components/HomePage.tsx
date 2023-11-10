@@ -41,6 +41,7 @@ export const HomePage = (props) => {
         min_temps={grid_data.min_temps}
       />
       <FortyEightHourForecast forty_eight_hour_data={forty_eight_hour_data} />
+      <SevenDayForecast seven_day_data={seven_day_data}/>
     </ScrollView>
   );
 };
@@ -119,15 +120,40 @@ const FortyEightHourSingleHour = ({period}) => {
 
 /* 7 Day Forecast - Home Page Component */
 const SevenDayForecast = ({seven_day_data}) => {
+  const all_periods = seven_day_data.all_periods;
   return (
     <View style={[styles.container, {flexDirection: 'column'}]}>
-      <SevenDayForecastSingleDay />
+      {all_periods.map((period) => (
+        <SevenDayForecastSingleDay key={period.number} period={period}/>
+      ))}
     </View>
   );
 };
 
 /* 7 Day Forecast - Single Day Forecast */
-const SevenDayForecastSingleDay = () => {};
+const SevenDayForecastSingleDay = ({period}) => {
+  // this time should be converted to an actual time
+  const start_time = ConvertISOTime(period.startTime);
+  const name = period.name;
+  const day_time = period.isDayTime;
+  const temp = period.temperature;
+  const temp_unit = period.temperatureUnit;
+  const precip_percent = period.probabilityOfPrecipitation.value;
+  const wind_speed = period.windSpeed;
+  const wind_direction = period.windDirection;
+  const icon_url = period.icon;
+  const short_forecast = period.shortForecast;
+  const detailed_forecast = period.detailedForecast;
+
+  return (
+    <View style={[styles.container, {flexDirection: 'row'}]}>
+      <Text>{name}</Text>
+      <Text>{(precip_percent === null)? '0': precip_percent}%</Text>
+      <Text>{short_forecast}</Text>
+      <Text>{temp}</Text>
+    </View>
+  );
+};
 
 /* Current Radar - Home Page Component */
 const Radar = () => {};
