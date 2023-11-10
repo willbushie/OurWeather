@@ -16,7 +16,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { ConvertISOTime } from 'Time.tsx';
+import { ConvertISOTime } from '../Handlers/Time.tsx';
 
 
 
