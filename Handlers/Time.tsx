@@ -84,19 +84,19 @@ export function ConvertISOTime(timestamp: string) {
   const utc_offset = timestamp.substring(19,25);
 
   console.log(
-      {
-          'API': {
-              'year': api_year,
-              'month': months[Number(api_month) - 1],
-              'date': api_date,
-              'military': api_military,
-              'minute': api_minute,
-              'second': api_second,
-              'day_night': api_day_night,
-              'offset': utc_offset
-          }
-      }
-  );
+    {
+    'API': {
+      'timezone': GetTimezone(utc_offset, DST()),
+      'year': api_year,
+      'month': months[Number(api_month) - 1],
+      'date': api_date,
+      'military': api_military,
+      'minute': api_minute,
+      'second': api_second,
+      'day_night': api_day_night,
+      'offset': utc_offset
+    }
+  });
 
   return '0AM';
 }

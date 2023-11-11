@@ -62,11 +62,11 @@ Here are the steps I took to accomplish this project.
 | Simple home page layout | 5 hrs 55 min | Setup a basic home page layout to have an avenue for fetching and displaying data to the user. |
 | Obtain location data from device | 4 hrs 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
-| Timestamp Handling | 1 hr 10 min | Custom ISO8601 timestamp conversion. |
+| Timestamp Handling | 1 hr 30 min | Custom ISO8601 timestamp conversion. |
 | Data Cleaning & Formatting |  | Cleaning and formatting useful data obtained from the API. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 23 hrs 15 min** 
+**Current Project Total: 23 hrs 35 min** 
 
 ## What I Learned
 
