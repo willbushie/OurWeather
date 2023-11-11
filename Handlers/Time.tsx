@@ -100,3 +100,35 @@ export function ConvertISOTime(timestamp: string) {
 
   return '0AM';
 }
+
+/**
+ * Obtain Timezone compared to UTC
+ *
+ * @param utc_offset string
+ *  The offset compared to UTC (input: '-06:00')
+ * @param dst boolean
+ *  If the daylight savings is current
+ *
+ * @return timezone string
+ *  The timezone of the offset (output: 'CST')
+ */
+function GetTimezone(utc_offset: string, dst: boolean) {
+  return '';
+}
+
+/**
+ * Giving a month and date, return if Daylight Savings Time is active or not.
+ *
+ * @param month string
+ *  Month number of the date in question (input: '12')
+ * @param date string
+ *  Day of the month of the date in question (input: '1')
+ * @param military string
+ *  Military hour of the date in question (input: '18')
+ *
+ * @return boolean
+ *  If daylight savings time is active or not
+ */
+function DST(month: string, date: string, military: string) {
+  return false;
+}
