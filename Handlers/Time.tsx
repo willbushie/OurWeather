@@ -119,17 +119,41 @@ function GetTimezone(utc_offset: string, dst: boolean) {
 /**
  * Giving a month and date, return if Daylight Savings Time is active or not.
  *
+ * @param year string
+ *  Year of the date being evaluated (Input: '2023')
  * @param month string
- *  Month number of the date in question (input: '12')
+ *  Month number of the date being evaluated (Input: '12')
  * @param date string
- *  Day of the month of the date in question (input: '1')
+ *  Day of the month of the date being evaluated (Input: '01')
  * @param military string
- *  Military hour of the date in question (input: '18')
+ *  Military hour of the date being evaluated (Input: '18')
  *
  * @return boolean
  *  If daylight savings time is active or not
  */
-function DST(month: string, date: string, military: string) {
+function DST(year: string, month: string, date: string, military: string) {
+  const dst_rules = DSTRules(year);
+  const dst_start = Number(dst_rules.dst_start);
+  const dst_end = Number(dst_rules.dst_end);
+
+  const month_int = Number(month);
+  const date_int = Number(date);
+  const military_int = Number(military);
+
+  if (month_int > 3 && month_int < 11) {
+    return true;
+  }
+  else if (month_int === 3 && date_int >= dst_start) {
+    if (date_int === dst_start && military_int >= 3) {
+        return true;
+    }
+  }
+  else if (month_int === 11 && date_int <= dst_end) {
+    /* 1AM - 2AM 'exists' twice, this does not consider that */
+    if (date_int === dst_end && military_int > 1) {
+        return true;
+    }
+  }
   return false;
 }
 

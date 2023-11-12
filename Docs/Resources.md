@@ -75,3 +75,7 @@ For some date calculations, the day of the week is needed. This was a helpful gu
 [Gauss's Algorithm](https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Gauss's_algorithm)
 
 This algorithm for determining the day of the week for any date on the Gregorian calendar was used in the [`Time.tsx`](../Handlers/Time.tsx) time handling file. 
+
+[DST Rules - NIST](https://www.nist.gov/pml/time-and-frequency-division/popular-links/daylight-saving-time-dst)
+
+This article talks about the rules around DST, when it starts and when it ends. This was helpful for determining when DST is being observed or not. 
