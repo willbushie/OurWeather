@@ -66,7 +66,7 @@ Here are the steps I took to accomplish this project.
 | Data Cleaning & Formatting |  | Cleaning and formatting useful data obtained from the API. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 23 hrs 35 min** 
+**Current Project Total: 27 hrs 50 min**
 
 ## What I Learned
 
