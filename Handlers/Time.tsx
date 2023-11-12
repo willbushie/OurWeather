@@ -134,6 +134,32 @@ function DST(month: string, date: string, military: string) {
 }
 
 /**
+ * Given a year, determine when DST starts and when DST ends for that year.
+ *
+ * @param year string
+ *  Year to determine when DST starts (Input: '2023')
+ *
+ * @return object
+ *  Output: {
+ *    'dst_start': '12', // Date in March when DST starts
+ *    'dst_end': '5'     // Date in November when DST ends
+ *  }
+ */
+function DSTRules(year: string) {
+  /* Based on when the first day of the month is, when the second Sunday will fall. */
+  const march_second_sunday_table = ['8','14','13','12','11','10','9'];
+  const march_day_one = DayOfTheWeek(year,'03','01');
+  const dst_start_date = march_second_sunday_table[march_day_one];
+
+  /* Based on when the first day of the month is, when the first Sunday will fall. */
+  const november_first_sunday_table = ['1','7','6','5','4','3','2'];
+  const november_day_one = DayOfTheWeek(year,'11','01');
+  const dst_end_date = november_first_sunday_table[november_day_one];
+
+  return {'dst_start':dst_start_date, 'dst_end':dst_end_date};
+}
+
+/**
  * Returns the day of the week from a year, month, date.
  * This function uses [Gauss's Algorithm](https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Gauss's_algorithm).
  *
