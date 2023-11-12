@@ -67,3 +67,11 @@ Since this application is small, it was decided to make a custom time handler. T
 [Timestamp Converter](https://www.timestamp-converter.com/)
 
 This timestamp converter was very useful for quick testing and checking against other kinds of timestamps.
+
+[Calculate Day of The Week](https://artofmemory.com/blog/how-to-calculate-the-day-of-the-week/)
+
+For some date calculations, the day of the week is needed. This was a helpful guide on one of the ways to calculate the day of the week. The exact method this guide used, was not incorporated into the code. 
+
+[Gauss's Algorithm](https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Gauss's_algorithm)
+
+This algorithm for determining the day of the week for any date on the Gregorian calendar was used in the [`Time.tsx`](../Handlers/Time.tsx) time handling file. 
