@@ -132,3 +132,25 @@ function GetTimezone(utc_offset: string, dst: boolean) {
 function DST(month: string, date: string, military: string) {
   return false;
 }
+
+/**
+ * Given a year, return if it is a leap year or not.
+ *
+ * @param string year
+ *  The year to test if it is a leap year or not
+ *
+ * @return boolean
+ */
+function LeapYear(year: string) {
+  const year_int = Number(year);
+  if (year_int % 4 === 0) {
+    if (year_int % 100 === 0 && year_int % 400 != 0) {
+      return false
+    }
+    else if (year_int % 100 === 0 && year_int % 400 === 0) {
+      return true
+    }
+    return true;
+  }
+  return false;
+}
