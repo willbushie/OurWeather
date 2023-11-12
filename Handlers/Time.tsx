@@ -148,16 +148,16 @@ function DST(month: string, date: string, military: string) {
  *  Day of the week (Sunday: 0, Saturday: 6)
  */
 function DayOfTheWeek(year: string, month: string, date: string) {
-    const month_offset_table = [0,3,3,6,1,4,6,2,5,0,3,5];
-    const month_offset_leap_table = [0,3,4,0,2,5,0,3,6,1,4,6];
-    const year_int = Number(year);
-    const month_int = Number(month);
-    const date_int = Number(date);
+  const month_offset_table = [0,3,3,6,1,4,6,2,5,0,3,5];
+  const month_offset_leap_table = [0,3,4,0,2,5,0,3,6,1,4,6];
+  const year_int = Number(year);
+  const month_int = Number(month);
+  const date_int = Number(date);
 
-    const month_offset = (LeapYear(year))? month_offset_leap_table[month_int - 1] : month_offset_table[month_int - 1];
-    const day = (date_int + month_offset + 5*((year_int - 1)%4) + 4*((year_int - 1)%100) + 6*((year_int - 1)%400))%7;
+  const month_offset = (LeapYear(year))? month_offset_leap_table[month_int - 1] : month_offset_table[month_int - 1];
+  const day = (date_int + month_offset + 5*((year_int - 1)%4) + 4*((year_int - 1)%100) + 6*((year_int - 1)%400))%7;
 
-    return day;
+  return day;
 }
 
 /**
