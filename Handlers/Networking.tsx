@@ -90,7 +90,8 @@ export async function RequestSevenDayWeather(url) {
       'generated_at': json.properties.generatedAt,
       'update_time': json.properties.updateTime,
       'elevation_val': json.properties.elevation.value,
-      'all_periods': json.properties.periods
+      'all_periods': json.properties.periods,
+      'paired_periods': SortDayPeriods(json.properties.periods)
     };
     return seven_day_data;
   }
@@ -98,6 +99,55 @@ export async function RequestSevenDayWeather(url) {
     console.error('./Handlers/Networking.tsx:RequestSevenDayWeather:', error);
   }
 };
+
+/**
+ * Sort all periods from seven day forecast into
+ *  pairs or the same day (morning & evening)
+ *
+ * @param array periods
+ *  All periods from the seven day forecast
+ *
+ * @return array
+ *  [{'2023-11-16T06:00:00-08:00' : {
+ *    'morning':{<PERIOD OBJECT> | null},
+ *    'evening':{<PERIOD OBJECT> | null}
+ *    },
+ *  {},...
+ *  }]
+ */
+function SortDayPeriods(periods: Array<Object>) {
+  let sorted_periods: { [key: string]: { morning: Object | null; evening: Object | null; } }[] = [];
+
+  for (let index = 0; index < periods.length; index++) {
+    const d_one_start = periods[index].startTime.substring(8,10);
+    const d_one_start_timestamp = periods[index].startTime;
+    const d_two_start = (index + 1 < periods.length)? periods[index+1].startTime.substring(8,10) : '';
+
+    /* day two is not blank, and both match */
+    if (d_two_start != '' && d_one_start === d_two_start) {
+      const pair_object = {'morning':periods[index],'evening':periods[index+1]};
+      const obj: { [key: string]: { morning: Object; evening: Object; } } = {};
+      obj[d_one_start_timestamp] = pair_object;
+      sorted_periods.push(obj);
+      index = index + 1;
+    }
+    /* day two is not blank, but they don't match */
+    else if (d_two_start != '' && d_one_start != d_two_start) {
+      const pair_object = {'morning':null,'evening':periods[index]};
+      const obj: { [key: string]: { morning: null; evening: Object; } } = {};
+      obj[d_one_start_timestamp] = pair_object;
+      sorted_periods.push(obj);;
+    }
+    /* day two is blank */
+    else if (d_two_start === '') {
+      const pair_object = {'morning':periods[index],'evening':null};
+      const obj: { [key: string]: { morning: Object; evening: null; } } = {};
+      obj[d_one_start_timestamp] = pair_object;
+      sorted_periods.push(obj);
+    }
+  }
+  return sorted_periods;
+}
 
 /**
  * Request all 48 hour weather data

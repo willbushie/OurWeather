@@ -63,10 +63,10 @@ Here are the steps I took to accomplish this project.
 | Obtain location data from device | 4 hrs 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
 | Timestamp Handling | 5 hr 30 min | Custom ISO8601 timestamp conversion. |
-| Data Cleaning & Formatting |  | Cleaning and formatting useful data obtained from the API. |
+| Data Cleaning & Formatting | 1 hr 30 min | Cleaning and formatting useful data obtained from the API. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 27 hrs 50 min**
+**Current Project Total: 29 hrs 20 min**
 
 ## What I Learned
 
