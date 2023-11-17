@@ -121,11 +121,11 @@ const FortyEightHourSingleHour = ({period}) => {
 
 /* 7 Day Forecast - Home Page Component */
 const SevenDayForecast = ({seven_day_data}) => {
-  const all_periods = seven_day_data.all_periods;
+  const all_pairs = seven_day_data.paired_periods;
   return (
     <View style={[styles.container, {flexDirection: 'column'}]}>
-      {all_periods.map((period) => (
-        <SevenDayForecastSingleDay key={period.number} period={period}/>
+      {all_pairs.map((pair, index) => (
+        <SevenDayForecastSingleDay key={index} period={pair}/>
       ))}
     </View>
   );
@@ -133,25 +133,85 @@ const SevenDayForecast = ({seven_day_data}) => {
 
 /* 7 Day Forecast - Single Day Forecast */
 const SevenDayForecastSingleDay = ({period}) => {
-  // this time should be converted to an actual time
-  const start_time = ConvertISOTime(period.startTime);
-  const name = period.name;
-  const day_time = period.isDayTime;
-  const temp = period.temperature;
-  const temp_unit = period.temperatureUnit;
-  const precip_percent = period.probabilityOfPrecipitation.value;
-  const wind_speed = period.windSpeed;
-  const wind_direction = period.windDirection;
-  const icon_url = period.icon;
-  const short_forecast = period.shortForecast;
-  const detailed_forecast = period.detailedForecast;
+  const timestamp = Object.keys(period)[0];
+  /* pass to Time.tsx and get the day of the week */
+  const day_of_week = timestamp.substring(8,10);
+
+  /* setting morning variables */
+  let m_name = '-';
+  let m_day_time = '-';
+  let m_temp = '-';
+  let m_temp_unit = '-';
+  let m_precip_percent = '-';
+  let m_wind_speed = '-';
+  let m_wind_direction = '-';
+  let m_icon_url = '-';
+  let m_short_forecast = '-';
+  let m_detailed_forecast = '-';
+
+  /* setting evening variables */
+  let e_name = '-';
+  let e_day_time = '-';
+  let e_temp = '-';
+  let e_temp_unit = '-';
+  let e_precip_percent = '-';
+  let e_wind_speed = '-';
+  let e_wind_direction = '-';
+  let e_icon_url = '-';
+  let e_short_forecast = '-';
+  let e_detailed_forecast = '-';
+
+  /* update morning variables */
+  if (period[timestamp].morning != null) {
+    m_name = period[timestamp].morning.name;
+    m_day_time = period[timestamp].morning.isDayTime;
+    m_temp = period[timestamp].morning.temperature;
+    m_temp_unit = period[timestamp].morning.temperatureUnit;
+    m_precip_percent = period[timestamp].morning.probabilityOfPrecipitation.value;
+    m_wind_speed = period[timestamp].morning.windSpeed;
+    m_wind_direction = period[timestamp].morning.windDirection;
+    m_icon_url = period[timestamp].morning.icon;
+    m_short_forecast = period[timestamp].morning.shortForecast;
+    m_detailed_forecast = period[timestamp].morning.detailedForecast;
+  }
+
+  /* update evening variables */
+  if (period[timestamp].evening != null) {
+    e_name = period[timestamp].evening.name;
+    e_day_time = period[timestamp].evening.isDayTime;
+    e_temp = period[timestamp].evening.temperature;
+    e_temp_unit = period[timestamp].evening.temperatureUnit;
+    e_precip_percent = period[timestamp].evening.probabilityOfPrecipitation.value;
+    e_wind_speed = period[timestamp].evening.windSpeed;
+    e_wind_direction = period[timestamp].evening.windDirection;
+    e_icon_url = period[timestamp].evening.icon;
+    e_short_forecast = period[timestamp].evening.shortForecast;
+    e_detailed_forecast = period[timestamp].evening.detailedForecast;
+  }
+
+  /* calculate the day precipitation percentage */
+  let day_precip_percent;
+  if (m_precip_percent === '-') {
+    day_precip_percent = e_precip_percent;
+  }
+  else if (e_precip_percent === '-') {
+    day_precip_percent = m_precip_percent;
+  }
+  else {
+    const m_weight = 0.5;
+    const e_weight = 0.5;
+    const m_percent = Number(m_precip_percent);
+    const e_percent = Number(e_precip_percent);
+
+    day_precip_percent = (m_percent * m_weight) + (e_percent * e_weight);
+  }
 
   return (
     <View style={[styles.container, {flexDirection: 'row'}]}>
-      <Text>{name}</Text>
-      <Text>{(precip_percent === null)? '0': precip_percent}%</Text>
-      <Text>{short_forecast}</Text>
-      <Text>{temp}</Text>
+      <Text>{day_of_week}</Text>
+      <Text style={[styles.seven_day_precip]}>{(day_precip_percent === null)? 0 :day_precip_percent}%</Text>
+      <Text style={[styles.seven_day_m_temp]}>{(m_temp === '-')? '-' : m_temp + '°'}</Text>
+      <Text style={[styles.seven_day_e_temp]}>{(e_temp === '-')? '-' : e_temp + '°'}</Text>
     </View>
   );
 };
@@ -220,5 +280,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 5,
     marginBottom: 5,
+  },
+  /* Seven day precipitation percentage */
+  seven_day_precip: {
+    position: 'absolute',
+    left: '25%',
+  },
+  /* Seven day morning temperature */
+  seven_day_m_temp: {
+    position: 'absolute',
+    left: '75%',
+  },
+  /* Seven day evening temperature */
+  seven_day_e_temp: {
+    position: 'absolute',
+    left: '85%',
   },
 });
