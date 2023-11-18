@@ -23,6 +23,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 - [ ] Give the user a few settings to customize their application experience (refresh period, etc).
 - [ ] Make the application look nice, utilize photos, backdrops, and light/dark themes.
 - [ ] Create a simple home screen widget that will update once every hour.
+- [ ] Create and run simple tests on code to ensure functionality is as expected.
 - [ ] Release application on the Google Play Store.
 
 # How To Run
@@ -39,6 +40,10 @@ Here is a list of packages and resources that are needed for the codebase to fun
   Kit ([JDK11 Download](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html))
 - Android Studio ([Download](https://developer.android.com/studio))
 - react-native-geolocation-service ([GitHub](https://github.com/Agontuk/react-native-geolocation-service) | [npm](https://www.npmjs.com/package/react-native-geolocation-service))
+
+## Testing
+
+Testing is an essential part of the software development life cycle. All documentation regarding testing can be found [here](Docs/Testing.md).
 
 ## APIs
 
@@ -64,9 +69,10 @@ Here are the steps I took to accomplish this project.
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
 | Timestamp Handling | 5 hr 30 min | Custom ISO8601 timestamp conversion. |
 | Data Cleaning & Formatting | 1 hr 30 min | Cleaning and formatting useful data obtained from the API. |
+| Testing | 1 hr 5 min | Writing and conducting tests on code. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 32 hrs 0 min**
+**Current Project Total: 33 hrs 5 min**
 
 ## What I Learned
 

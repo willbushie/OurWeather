@@ -156,6 +156,8 @@ function DST(year: string, month: string, date: string, military: string) {
   }
   return false;
 }
+/* export DST function for testing */
+module.exports = DST;
 
 /**
  * Given a year, determine when DST starts and when DST ends for that year.
