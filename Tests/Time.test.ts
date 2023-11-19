@@ -2,7 +2,8 @@ import {expect, jest, test} from '@jest/globals';
 import {
   DST,
   DSTRules,
-  DayOfTheWeek
+  DayOfTheWeek,
+  LeapYear
 } from '../Handlers/Time';
 
 /**
@@ -74,4 +75,18 @@ test('Finds the day of the week', () => {
   expect(DayOfTheWeek('2100', '09', '08')).toBe(3);
   expect(DayOfTheWeek('2100', '09', '09')).toBe(4);
   expect(DayOfTheWeek('2100', '09', '10')).toBe(5);
+});
+
+/**
+ * ./Handlers/Time.tsx:LeapYear()
+ */
+test('Is a leap year or not', () => {
+  expect(LeapYear('2000')).toBe(true);
+  expect(LeapYear('2001')).toBe(false)
+  expect(LeapYear('2002')).toBe(false)
+  expect(LeapYear('2016')).toBe(true)
+  expect(LeapYear('2020')).toBe(true)
+  expect(LeapYear('2021')).toBe(false)
+  expect(LeapYear('2022')).toBe(false)
+  expect(LeapYear('2100')).toBe(false)
 });

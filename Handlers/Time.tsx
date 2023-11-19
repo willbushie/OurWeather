@@ -237,3 +237,5 @@ function LeapYear(year: string) {
   }
   return false;
 }
+/* export function for testing - Time.test.ts */
+exports.LeapYear = LeapYear;
