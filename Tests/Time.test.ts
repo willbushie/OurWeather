@@ -1,4 +1,5 @@
-const DST = require('../Handlers/Time.tsx');
+import {expect, jest, test} from '@jest/globals';
+import {DST} from '../Handlers/Time';
 
 /**
  * ./Handlers/Time.tsx:DST()
