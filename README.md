@@ -69,10 +69,10 @@ Here are the steps I took to accomplish this project.
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
 | Timestamp Handling | 5 hr 30 min | Custom ISO8601 timestamp conversion. |
 | Data Cleaning & Formatting | 1 hr 30 min | Cleaning and formatting useful data obtained from the API. |
-| Testing | 1 hr 50 min | Writing and conducting tests on code. |
+| Testing | 3 hr 40 min | Writing and conducting tests on code. |
 
 ~~**Total project time (including coding & research):**~~
-**Current Project Total: 33 hrs 50 min**
+**Current Project Total: 35 hrs 40 min**
 
 ## What I Learned
 
