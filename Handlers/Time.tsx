@@ -149,8 +149,11 @@ function DST(year: string, month: string, date: string, military: string) {
     }
   }
   else if (month_int === 11 && date_int <= dst_end) {
+    if (date_int < dst_end) {
+      return true;
+    }
     /* 1AM - 2AM 'exists' twice, this does not consider that */
-    if (date_int === dst_end && military_int > 1) {
+    else if (date_int === dst_end && military_int < 1) {
         return true;
     }
   }
