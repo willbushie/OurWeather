@@ -156,7 +156,7 @@ function DST(year: string, month: string, date: string, military: string) {
   }
   return false;
 }
-/* export DST function for testing */
+/* export function for testing - Time.test.ts */
 exports.DST = DST;
 
 /**
