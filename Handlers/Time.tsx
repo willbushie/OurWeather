@@ -184,6 +184,8 @@ function DSTRules(year: string) {
 
   return {'dst_start':dst_start_date, 'dst_end':dst_end_date};
 }
+/* export function for testing - Time.test.ts */
+exports.DSTRules = DSTRules;
 
 /**
  * Returns the day of the week from a year, month, date.
