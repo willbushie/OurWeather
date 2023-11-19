@@ -82,11 +82,11 @@ test('Finds the day of the week', () => {
  */
 test('Is a leap year or not', () => {
   expect(LeapYear('2000')).toBe(true);
-  expect(LeapYear('2001')).toBe(false)
-  expect(LeapYear('2002')).toBe(false)
-  expect(LeapYear('2016')).toBe(true)
-  expect(LeapYear('2020')).toBe(true)
-  expect(LeapYear('2021')).toBe(false)
-  expect(LeapYear('2022')).toBe(false)
-  expect(LeapYear('2100')).toBe(false)
+  expect(LeapYear('2001')).toBe(false);
+  expect(LeapYear('2002')).toBe(false);
+  expect(LeapYear('2016')).toBe(true);
+  expect(LeapYear('2020')).toBe(true);
+  expect(LeapYear('2021')).toBe(false);
+  expect(LeapYear('2022')).toBe(false);
+  expect(LeapYear('2100')).toBe(false);
 });
