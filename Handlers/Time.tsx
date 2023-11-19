@@ -213,6 +213,8 @@ function DayOfTheWeek(year: string, month: string, date: string) {
 
   return day;
 }
+/* export function for testing - Time.test.ts */
+exports.DayOfTheWeek = DayOfTheWeek;
 
 /**
  * Given a year, return if it is a leap year or not.

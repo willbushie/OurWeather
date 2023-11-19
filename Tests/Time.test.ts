@@ -1,7 +1,8 @@
 import {expect, jest, test} from '@jest/globals';
 import {
   DST,
-  DSTRules
+  DSTRules,
+  DayOfTheWeek
 } from '../Handlers/Time';
 
 /**
@@ -46,4 +47,31 @@ test('Finds the start and end of DST', () => {
   expect(DSTRules('2023')).toStrictEqual({'dst_start':'12','dst_end':'5'});
   expect(DSTRules('2024')).toStrictEqual({'dst_start':'10','dst_end':'3'});
   expect(DSTRules('2025')).toStrictEqual({'dst_start':'9','dst_end':'2'});
+});
+
+/**
+ * ./Handlers/Time.tsx:DayOfTheWeek()
+ */
+test('Finds the day of the week', () => {
+  expect(DayOfTheWeek('2020', '02', '23')).toBe(0);
+  expect(DayOfTheWeek('2020', '02', '24')).toBe(1);
+  expect(DayOfTheWeek('2020', '02', '25')).toBe(2);
+  expect(DayOfTheWeek('2020', '02', '26')).toBe(3);
+  expect(DayOfTheWeek('2020', '02', '27')).toBe(4);
+  expect(DayOfTheWeek('2020', '02', '28')).toBe(5);
+  expect(DayOfTheWeek('2020', '02', '29')).toBe(6);
+  expect(DayOfTheWeek('2021', '04', '01')).toBe(4);
+  expect(DayOfTheWeek('2021', '04', '02')).toBe(5);
+  expect(DayOfTheWeek('2021', '04', '03')).toBe(6);
+  expect(DayOfTheWeek('2021', '04', '04')).toBe(0);
+  expect(DayOfTheWeek('2021', '04', '05')).toBe(1);
+  expect(DayOfTheWeek('2021', '04', '06')).toBe(2);
+  expect(DayOfTheWeek('2021', '04', '07')).toBe(3);
+  expect(DayOfTheWeek('2100', '09', '04')).toBe(6);
+  expect(DayOfTheWeek('2100', '09', '05')).toBe(0);
+  expect(DayOfTheWeek('2100', '09', '06')).toBe(1);
+  expect(DayOfTheWeek('2100', '09', '07')).toBe(2);
+  expect(DayOfTheWeek('2100', '09', '08')).toBe(3);
+  expect(DayOfTheWeek('2100', '09', '09')).toBe(4);
+  expect(DayOfTheWeek('2100', '09', '10')).toBe(5);
 });
