@@ -21,11 +21,14 @@ test('If DST is being observed', () => {
   expect(DST('2023', '3', '12', '01')).toBe(false);
   expect(DST('2023', '3', '12', '03')).toBe(true);
   /* DST ending - backward - (2AM -> 1AM) */
+  expect(DST('2023', '11', '04', '22')).toBe(true);
   expect(DST('2023', '11', '04', '23')).toBe(true);
   expect(DST('2023', '11', '05', '00')).toBe(true);
-  /* !!! SPECIAL CASE, 01:00 is assumed to be outside of DST */
-  expect(DST('2023', '11', '05', '01')).toBe(false);
+  expect(DST('2023', '11', '05', '01')).toBe(false); /* 01:00 is assumed to be outside of DST */
+  expect(DST('2023', '11', '05', '02')).toBe(false);
   expect(DST('2023', '11', '05', '03')).toBe(false);
+  expect(DST('2023', '11', '05', '04')).toBe(false);
+  expect(DST('2023', '11', '05', '05')).toBe(false);
 });
 
 /**
