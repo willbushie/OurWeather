@@ -13,7 +13,7 @@ test('If DST is being observed', () => {
   /* DST starts - forward (1AM -> 3AM) */
   expect(DST('2023', '3', '11', '23')).toBe(false);
   expect(DST('2023', '3', '12', '00')).toBe(false);
-  expect(DST('2023', '3', '12', '01')).toBe(true);
+  expect(DST('2023', '3', '12', '01')).toBe(false);
   expect(DST('2023', '3', '12', '03')).toBe(true);
   /* DST ending - backward - (2AM -> 1AM) */
   expect(DST('2023', '11', '04', '23')).toBe(true);
