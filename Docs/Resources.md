@@ -79,3 +79,7 @@ This algorithm for determining the day of the week for any date on the Gregorian
 [DST Rules - NIST](https://www.nist.gov/pml/time-and-frequency-division/popular-links/daylight-saving-time-dst)
 
 This article talks about the rules around DST, when it starts and when it ends. This was helpful for determining when DST is being observed or not. 
+
+[MDM Docs - Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+This documentation refers to the JavaScript `Date` object. This was helpful for obtaining the current device time and comparing it against the current UTC time. This documentation was discovered from [this Stackoverflow question](https://stackoverflow.com/questions/37271356/how-to-get-the-current-date-in-reactnative).

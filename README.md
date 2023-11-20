@@ -67,20 +67,15 @@ Here are the steps I took to accomplish this project.
 | Frontend - Home Page | 8 hrs 35 min | Frontend home page for showing current/selected location weather information. |
 | Obtain location data from device | 4 hrs 50 min | Research & obtain location permissions from user device for precise current location weather. | 
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
-| Timestamp Handling | 5 hr 30 min | Custom ISO8601 timestamp conversion. |
+| Timestamp Handling | 9 hr 25 min | Handling device and API timestamps for easier handling throughout that application. |
 | Data Cleaning & Formatting | 1 hr 30 min | Cleaning and formatting useful data obtained from the API. |
 | Testing | 3 hr 40 min | Writing and conducting tests on code. |
 
-~~**Total project time (including coding & research):**~~
-**Current Project Total: 35 hrs 40 min**
+**Current Project Total: 39 hrs 35 min**
 
 ## What I Learned
 
 A list of things that I learned during this project.
-
-- How to setup a React Native project (for Android development specifically).
-- Creating and using custom components in React Native.
-- Horizontal scroll with `<ScrollView>`.
 
 ## Resources
 
