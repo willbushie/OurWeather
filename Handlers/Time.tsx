@@ -65,6 +65,106 @@ function TwentyFourHourConversion(hour: string) {
 exports.TwentyFourHourConversion = TwentyFourHourConversion;
 
 /**
+ * Obtain device time in a readable key val object
+ *
+ * @return object
+ *  Output: {
+ *    'device_timestamp': '2023-11-19T23:45:53-06:00',
+ *    'device': {
+ *      'year':   '2023',
+ *      'month':  '11',
+ *      'date':   '19',
+ *      'hour':   '23',
+ *      'minute': '45',
+ *      'second': '53',
+ *      'offset': '-06:00'
+ *    },
+ *    'UTC': {
+ *      'year':   '2023',
+ *      'month':  '11',
+ *      'date':   '20',
+ *      'hour':   '05',
+ *      'minute': '45',
+ *      'second': '53'
+ *    }
+ *  }
+ */
+function GetCurrentDeviceTime() {
+  /* Get device time items */
+  const device_year_int = new Date().getFullYear();
+  const device_year_str = device_year_int;
+  const device_month_int = new Date().getMonth() + 1;
+  const device_month_str = (device_month_int < 10)? '0' + String(device_month_int): String(device_month_int);
+  const device_date_int = new Date().getDate();
+  const device_date_str = (device_date_int < 10)? '0' + String(device_date_int): String(device_date_int);
+  const device_hour_int = new Date().getHours();
+  const device_hour_str = (device_hour_int < 10)? '0' + String(device_hour_int): String(device_hour_int);
+  const device_minutes_int = new Date().getMinutes();
+  const device_minutes_str = (device_minutes_int < 10)? '0' + String(device_minutes_int): String(device_minutes_int);
+  const device_seconds_int = new Date().getSeconds();
+  const device_seconds_str = (device_seconds_int < 10)? '0' + String(device_seconds_int): String(device_seconds_int);
+
+  /* Get UTC time data */
+  const utc_year_int = new Date().getUTCFullYear();
+  const utc_year_str = String(utc_year_int);
+  const utc_month_int = new Date().getUTCMonth() + 1;
+  const utc_month_str = (utc_month_int < 10)? '0' + String(utc_month_int): String(utc_month_int);
+  const utc_date_int = new Date().getUTCDate();
+  const utc_date_str = (utc_date_int < 10)? '0' + String(utc_date_int): String(utc_date_int);
+  const utc_hour_int = new Date().getUTCHours();
+  const utc_hour_str = (utc_hour_int < 10)? '0' + String(utc_hour_int): String(utc_hour_int);
+  const utc_minutes_int = new Date().getUTCMinutes();
+  const utc_minutes_str = (utc_minutes_int < 10)? '0' + String(utc_minutes_int): String(utc_minutes_int);
+  const utc_seconds_int = new Date().getUTCSeconds();
+  const utc_seconds_str = (utc_seconds_int < 10)? '0' + String(utc_seconds_int): String(utc_seconds_int);
+
+  /* Change offset from minutes to +-00:00 */
+  const device_offset = new Date(device_year_int + device_month_int + device_date_int).getTimezoneOffset();
+  let offset = '';
+  if (device_offset < 0) {
+    const minutes = device_offset * -1;
+    const hour = minutes / 60;
+    const min = minutes % 60;
+    offset += '+';
+    offset += (hour < 10)? '0' + String(hour) + ':': String(hour) + ':';
+    offset += (min < 10)? '0' + String(min): String(min);
+  }
+  else {
+    const hour = device_offset / 60;
+    const min = device_offset % 60;
+    offset += '-';
+    offset += (hour < 10)? '0' + String(hour) + ':': String(hour) + ':';
+    offset += (min < 10)? '0' + String(min): String(min);
+  }
+
+  /* Build the device timestamp: 2023-11-20T22:00:00-06:00 */
+  let device_timestamp = device_year_str + '-' + device_month_str + '-' + device_date_str + 'T';
+  device_timestamp += device_hour_str + ':' + device_minutes_str + ':' + device_seconds_str;
+  device_timestamp += offset;
+
+  return {
+    'device_timestamp': device_timestamp,
+    'device': {
+      'year':   device_year_str,
+      'month':  device_month_str,
+      'date':   device_date_str,
+      'hour':   device_hour_str,
+      'minute': device_minutes_str,
+      'second': device_seconds_str,
+      'offset': offset
+    },
+    'UTC': {
+      'year':   utc_year_str,
+      'month':  utc_month_str,
+      'date':   utc_date_str,
+      'hour':   utc_hour_str,
+      'minute': utc_minutes_str,
+      'second': utc_seconds_str
+    }
+  };
+}
+
+/**
  * Obtain Timezone compared to UTC
  *
  * @param utc_offset string
