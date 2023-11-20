@@ -1,6 +1,26 @@
 import React from 'react';
 
 /**
+ * Convert 24-hour to 12-hour.
+ *
+ * @param string hour
+ *  24-hour hour (input: '01', input: '18')
+ *
+ * @return string
+ *  12 hour equivalent (output: '01', output: '06')
+ */
+function TwentyFourHourConversion(hour: string) {
+  if (hour === '00' || hour === '12') {
+    return '12';
+  }
+  else {
+    return String(Number(hour) % 12);
+  }
+}
+/* export function for testing - Time.test.ts */
+exports.TwentyFourHourConversion = TwentyFourHourConversion;
+
+/**
  * Convert ISO8601 readable time data.
  *
  * @param string timestamp

@@ -1,10 +1,42 @@
 import {expect, jest, test} from '@jest/globals';
 import {
+  TwentyFourHourConversion,
   DST,
   DSTRules,
   DayOfTheWeek,
   LeapYear
 } from '../Handlers/Time';
+
+/**
+ * ./Handlers/Time.tsx:TwentyFourHourConversion()
+ */
+test('Convert 24-hour to 12 hour', () => {
+  /* All possible test cases */
+  expect(TwentyFourHourConversion('00')).toBe('12');
+  expect(TwentyFourHourConversion('01')).toBe('1');
+  expect(TwentyFourHourConversion('02')).toBe('2');
+  expect(TwentyFourHourConversion('03')).toBe('3');
+  expect(TwentyFourHourConversion('04')).toBe('4');
+  expect(TwentyFourHourConversion('05')).toBe('5');
+  expect(TwentyFourHourConversion('06')).toBe('6');
+  expect(TwentyFourHourConversion('07')).toBe('7');
+  expect(TwentyFourHourConversion('08')).toBe('8');
+  expect(TwentyFourHourConversion('09')).toBe('9');
+  expect(TwentyFourHourConversion('10')).toBe('10');
+  expect(TwentyFourHourConversion('11')).toBe('11');
+  expect(TwentyFourHourConversion('12')).toBe('12');
+  expect(TwentyFourHourConversion('13')).toBe('1');
+  expect(TwentyFourHourConversion('14')).toBe('2');
+  expect(TwentyFourHourConversion('15')).toBe('3');
+  expect(TwentyFourHourConversion('16')).toBe('4');
+  expect(TwentyFourHourConversion('17')).toBe('5');
+  expect(TwentyFourHourConversion('18')).toBe('6');
+  expect(TwentyFourHourConversion('19')).toBe('7');
+  expect(TwentyFourHourConversion('20')).toBe('8');
+  expect(TwentyFourHourConversion('21')).toBe('9');
+  expect(TwentyFourHourConversion('22')).toBe('10');
+  expect(TwentyFourHourConversion('23')).toBe('11');
+});
 
 /**
  * ./Handlers/Time.tsx:DST()
