@@ -1,6 +1,50 @@
 import React from 'react';
 
 /**
+ * Convert ISO8601 timestamp into easily readable object.
+ *
+ * @param string timestamp
+ *  ISO8601 timestamp (input: '2023-11-07T21:00:00-06:00')
+ *
+ * @return object
+ *  {
+ *    'timestamp':     '2023-11-07T21:00:00-06:00',
+ *    'year':          '2023',
+ *    'month':         'November',
+ *    'date':          '8',
+ *    'day_of_week':   'Wednesday',
+ *    'military_hour': '03',
+ *    'twelve_hour':   '3',
+ *    'minute':        '00',
+ *    'second':        '00',
+ *    'day_night':     'AM',
+ *    'offset':        '-06:00'
+ *  }
+ */
+function ReadableISO(timestamp: string) {
+  const year = timestamp.substring(0,4);
+  const month = timestamp.substring(5,7);
+  const date = timestamp.substring(8,10);
+  const military_hour = timestamp.substring(11,13);
+
+  return {
+    'timestamp': timestamp,
+    'year': year,
+    'month': month,
+    'date': date,
+    'day_of_week': String(DayOfTheWeek(year, month, date)),
+    'military_hour': military_hour,
+    'twelve_hour': TwentyFourHourConversion(military_hour),
+    'minute': timestamp.substring(14, 16),
+    'second': timestamp.substring(17,19),
+    'day_night': (Number(military_hour) >= 12)? 'PM' : 'AM',
+    'offset': timestamp.substring(19,25)
+  };
+}
+/* export function for testing - Time.test.ts */
+exports.ReadableISO = ReadableISO;
+
+/**
  * Convert 24-hour to 12-hour.
  *
  * @param string hour

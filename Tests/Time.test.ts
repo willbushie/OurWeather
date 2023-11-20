@@ -1,11 +1,57 @@
 import {expect, jest, test} from '@jest/globals';
 import {
+  ReadableISO,
   TwentyFourHourConversion,
   DST,
   DSTRules,
   DayOfTheWeek,
   LeapYear
 } from '../Handlers/Time';
+
+/**
+ * ./Handlers/Time.tsx:ReadableISO()
+ */
+test('ISO8601 timestamps to readable objects', () => {
+  expect(ReadableISO('2023-11-19T20:22:06-08:00')).toStrictEqual({
+    'timestamp':     '2023-11-19T20:22:06-08:00',
+    'year':          '2023',
+    'month':         '11',
+    'date':          '19',
+    'day_of_week':   '0',
+    'military_hour': '20',
+    'twelve_hour':   '8',
+    'minute':        '22',
+    'second':        '06',
+    'day_night':     'PM',
+    'offset':        '-08:00'
+  });
+  expect(ReadableISO('2023-11-20T00:47:38-06:00')).toStrictEqual({
+    'timestamp':     '2023-11-20T00:47:38-06:00',
+    'year':          '2023',
+    'month':         '11',
+    'date':          '20',
+    'day_of_week':   '1',
+    'military_hour': '00',
+    'twelve_hour':   '12',
+    'minute':        '47',
+    'second':        '38',
+    'day_night':     'AM',
+    'offset':        '-06:00'
+  });
+  expect(ReadableISO('2023-11-07T21:03:00-06:00')).toStrictEqual({
+    'timestamp':     '2023-11-07T21:03:00-06:00',
+    'year':          '2023',
+    'month':         '11',
+    'date':          '07',
+    'day_of_week':   '2',
+    'military_hour': '21',
+    'twelve_hour':   '9',
+    'minute':        '03',
+    'second':        '00',
+    'day_night':     'PM',
+    'offset':        '-06:00'
+  });
+});
 
 /**
  * ./Handlers/Time.tsx:TwentyFourHourConversion()
