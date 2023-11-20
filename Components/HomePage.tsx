@@ -16,7 +16,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { ConvertISOTime } from '../Handlers/Time.tsx';
 
 
 
@@ -101,7 +100,7 @@ const FortyEightHourForecast = ({forty_eight_hour_data}) => {
 /* 48 Hour Forecast - Single Hour Component */
 const FortyEightHourSingleHour = ({period}) => {
   // this time should be converted to an actual time
-  const start_time = ConvertISOTime(period.startTime);
+  const start_time = period.startTime;
   const day_time = period.isDayTime;
   const temp = period.temperature;
   const temp_unit = period.temperatureUnit;
