@@ -11,7 +11,148 @@ import React from 'react';
  * @return string
  *  ISO8601 timestamp (output: '2023-11-07T19:00:00-06:00')
  */
-function ConvertTimeWithOffset() {}
+function ConvertTimeWithOffset(timestamp: string, offset: string) {
+  const readable_time = ReadableISO(timestamp);
+
+  /* if timestamp and offset match */
+  if (readable_time.offset === offset) {
+    return timestamp;
+  }
+
+  const month_days = {
+    1: 30,
+    3: 31,
+    2: (LeapYear(readable_time.year))? 29 : 28,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31
+  };
+
+  /* parse offset */
+  const stamp_offset = readable_time.offset;
+  const stamp_offset_plusminus = stamp_offset.substring(0,1);
+  const stamp_offset_hr = stamp_offset.substring(1,3);
+  const stamp_offset_hr_int = (stamp_offset_plusminus === '-')? -1 * Number(stamp_offset_hr): Number(stamp_offset_hr);
+  const stamp_offset_min = stamp_offset.substring(4,6);
+  const stamp_offset_min_int = Number(stamp_offset_min);
+
+  /* parse readable_time.offset */
+  const offset_plusminus = offset.substring(0,1);
+  const offset_hr = offset.substring(1,3);
+  const offset_hr_int = (offset_plusminus === '-')? -1 * Number(offset_hr): Number(offset_hr);
+  const offset_min = offset.substring(4,6);
+  const offset_min_int = Number(offset_min);
+
+  /* timestamp is behind offset */
+  if (stamp_offset_hr_int < offset_hr_int || stamp_offset_min_int < offset_min_int) {
+    const min_diff = Math.abs(stamp_offset_min_int) - Math.abs(offset_min_int);
+    const hr_diff = Math.abs(stamp_offset_hr_int) - Math.abs(offset_hr_int);
+
+    let new_min = Number(readable_time.minute) + min_diff;
+    let new_hour = Number(readable_time.military_hour) + hr_diff;
+    let new_date = Number(readable_time.date);
+    let new_month = Number(readable_time.month);
+    let new_year = Number(readable_time.year);
+
+    /* new minute >= 60 - next hour | NOT AS GENERAL AS POSSIBLE */
+    /* if (new_min >= 60) {
+      new_min = (new_min - 60 < 10)? '0' + String(new_min - 60): String(new_min - 60);
+      new_hour =+ 1;
+    }
+    else {
+      new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+    } */
+    new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+    /* new hour > 23 - next day */
+    if (new_hour > 23) {
+      new_hour = (new_hour - 24 < 10)? '0' + String(new_hour - 24): String(new_hour - 24);
+      new_date += 1;
+    }
+    else {
+      new_hour = (new_hour < 10)? '0' + String(new_hour): String(new_hour);
+    }
+    /* new date > 28, 29, 30, 31 - next month */
+    if (new_date > month_days[new_month]) {
+      new_date = '01';
+      new_month += 1;
+    }
+    else {
+      new_date = (new_date < 10)? '0' + String(new_date): String(new_date);
+    }
+    /* new month > 12 - next year */
+    if (new_month > 12) {
+      new_month = (new_month - 12 < 10)? '0' + String(new_month - 12): String(new_month - 12);
+      new_year = String(new_year + 1);
+    }
+    else {
+      new_month = (new_month < 10)? '0' + String(new_month): String(new_month);
+    }
+
+    let return_timestamp = new_year + '-' + new_month + '-' + new_date + 'T';
+    return_timestamp += new_hour + ':' + new_min + ':' + readable_time.second;
+    return_timestamp += offset;
+
+    return return_timestamp;
+  }
+  /* timestamp is ahead of offset */
+  else if (stamp_offset_hr_int > offset_hr_int || stamp_offset_min_int > offset_min_int) {
+    const min_diff = Math.abs(offset_min_int) - Math.abs(stamp_offset_min_int);
+    const hr_diff = Math.abs(offset_hr_int) - Math.abs(stamp_offset_hr_int);
+
+    let new_min = Number(readable_time.minute) - min_diff;
+    let new_hour = Number(readable_time.military_hour) - hr_diff;
+    let new_date = Number(readable_time.date);
+    let new_month = Number(readable_time.month);
+    let new_year = Number(readable_time.year);
+
+    /* new minute < 0 - prev hour | NOT AS GENERAL AS POSSIBLE */
+    /* if (new_min <= 0) {
+      new_min = (60 - new_min < 10)? '0' + String(60 - new_min): String(60 - new_min);
+      new_hour =- 1;
+    }
+    else {
+      new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+    } */
+    new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+    /* new hour < 0 - prev day */
+    if (new_hour < 0) {
+      new_hour = (new_hour + 24 < 10)? '0' + String(new_hour + 24): String(new_hour + 24);
+      new_date -= 1;
+    }
+    else {
+      new_hour = (new_hour < 10)? '0' + String(new_hour): String(new_hour);
+    }
+    /* new date < 1 - prev month */
+    if (new_date < 1) {
+      new_month -= 1;
+      const new_month_temp = (new_month < 1)? 12: new_month;
+      new_date = String(month_days[new_month_temp]);
+    }
+    else {
+      new_date = (new_date < 10)? '0' + String(new_date): String(new_date);
+    }
+    /* new month < 1 - prev year */
+    if (new_month < 1) {
+      new_month = '12';
+      new_year = String(new_year - 1);
+    }
+    else {
+      new_month = (new_month < 10)? '0' + String(new_month): String(new_month);
+    }
+
+    let return_timestamp = new_year + '-' + new_month + '-' + new_date + 'T';
+    return_timestamp += new_hour + ':' + new_min + ':' + readable_time.second;
+    return_timestamp += offset;
+
+    return return_timestamp;
+  }
+}
 /* export function for testing - Time.test.ts */
 exports.ConvertTimeWithOffset = ConvertTimeWithOffset;
 
