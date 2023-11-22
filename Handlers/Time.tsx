@@ -12,6 +12,8 @@ import React from 'react';
  *  ISO8601 timestamp (output: '2023-11-07T19:00:00-06:00')
  */
 function ConvertTimeWithOffset() {}
+/* export function for testing - Time.test.ts */
+exports.ConvertTimeWithOffset = ConvertTimeWithOffset;
 
 /**
  * Convert ISO8601 timestamp into easily readable object.

@@ -1,5 +1,6 @@
 import {expect, jest, test} from '@jest/globals';
 import {
+  ConvertTimeWithOffset,
   ReadableISO,
   TwentyFourHourConversion,
   DST,
@@ -7,6 +8,27 @@ import {
   DayOfTheWeek,
   LeapYear
 } from '../Handlers/Time';
+
+/**
+ * ./Handlers/Time.tsx:ConvertTimeWithOffset()
+ */
+test('ISO8601 timestamp conversion based on given offset value', () => {
+  /* timestamp behind desired offset */
+  expect(ConvertTimeWithOffset('2023-11-07T10:34:12-08:00', '-05:00')).toBe('2023-11-07T07:34:12-05:00'); // same day
+  expect(ConvertTimeWithOffset('2023-11-07T21:13:43-08:00', '-05:00')).toBe('2023-11-00T00:13:43-05:00'); // new day
+  expect(ConvertTimeWithOffset('2023-11-30T23:43:33-08:00', '-05:00')).toBe('2023-12-01T02:43:33-05:00'); // new month
+  expect(ConvertTimeWithOffset('2023-11-30T23:43:33-08:00', '-05:00')).toBe('2024-01-01T01:15:52-05:00'); // new year
+  /* timestamp ahead of desired offset */
+  expect(ConvertTimeWithOffset('2023-11-07T07:34:12-05:00', '-08:00')).toBe('2023-11-07T10:34:12-08:00'); // same day
+  expect(ConvertTimeWithOffset('2023-11-07T00:13:43-05:00', '-08:00')).toBe('2023-11-07T21:13:43-08:00'); // new day
+  expect(ConvertTimeWithOffset('2023-12-01T02:43:33-05:00', '-08:00')).toBe('2023-11-30T23:43:33-08:00'); // new month
+  expect(ConvertTimeWithOffset('2024-01-01T01:15:52-05:00', '-08:00')).toBe('2023-11-30T23:43:33-08:00'); // new year
+  /* timestamp same as desired offset */
+  expect(ConvertTimeWithOffset('2023-11-07T10:34:12-06:00', '-06:00')).toBe('2023-11-07T10:34:12-06:00');
+  expect(ConvertTimeWithOffset('2023-11-07T21:13:43-06:00', '-06:00')).toBe('2023-11-07T21:13:43-06:00');
+  expect(ConvertTimeWithOffset('2023-11-30T23:43:33-06:00', '-06:00')).toBe('2023-11-30T23:43:33-06:00');
+  expect(ConvertTimeWithOffset('2023-11-30T23:43:33-06:00', '-06:00')).toBe('2023-11-30T23:43:33-06:00');
+});
 
 /**
  * ./Handlers/Time.tsx:ReadableISO()
