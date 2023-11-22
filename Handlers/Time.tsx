@@ -3,6 +3,9 @@ import React from 'react';
 /**
  * Convert an ISO 8601 timestamp to a new timestamp given the desired offset.
  *
+ * **NOTE: OFFSETS MUST BE IN THE SAME HEMISPHERE (EASTERN/WESTERN) |
+ *  THIS FUNCTION IS NOT AS GENERAL PURPOSE AS IT COULD BE**
+ *
  * @param string timestamp
  *  ISO8601 timestamp (input: '2023-11-07T21:00:00-08:00')
  * @param string offset
