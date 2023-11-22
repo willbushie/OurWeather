@@ -1,6 +1,19 @@
 import React from 'react';
 
 /**
+ * Convert an ISO 8601 timestamp to a new timestamp given the desired offset.
+ *
+ * @param string timestamp
+ *  ISO8601 timestamp (input: '2023-11-07T21:00:00-08:00')
+ * @param string offset
+ *  ISO8601 timestamp offset (input: '-06:00')
+ *
+ * @return string
+ *  ISO8601 timestamp (output: '2023-11-07T19:00:00-06:00')
+ */
+function ConvertTimeWithOffset() {}
+
+/**
  * Convert ISO8601 timestamp into easily readable object.
  *
  * @param string timestamp
