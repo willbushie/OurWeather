@@ -25,9 +25,9 @@ exports.ConvertTimeWithOffset = ConvertTimeWithOffset;
  *  {
  *    'timestamp':     '2023-11-07T21:00:00-06:00',
  *    'year':          '2023',
- *    'month':         'November',
+ *    'month':         '11',
  *    'date':          '8',
- *    'day_of_week':   'Wednesday',
+ *    'day_of_week':   '2',
  *    'military_hour': '03',
  *    'twelve_hour':   '3',
  *    'minute':        '00',
@@ -294,10 +294,10 @@ function LeapYear(year: string) {
   const year_int = Number(year);
   if (year_int % 4 === 0) {
     if (year_int % 100 === 0 && year_int % 400 != 0) {
-      return false
+      return false;
     }
     else if (year_int % 100 === 0 && year_int % 400 === 0) {
-      return true
+      return true;
     }
     return true;
   }
