@@ -81,7 +81,7 @@ const CurrentWeather = (props) => {
     <View style={styles.container}>
       <Text style={[styles.curr_glance_data, {fontSize: 50}]}>{curr_temp} °{curr_temp_unit}</Text>
       <Text style={styles.curr_glance_data}>
-        {ConvertCelsiusToFahrenheit(max_temp)} / {ConvertCelsiusToFahrenheit(min_temp)}
+        {ConvertCelsiusToFahrenheit(max_temp)}° / {ConvertCelsiusToFahrenheit(min_temp)}°
       </Text>
       <Text style={styles.curr_glance_data}>{props.city}, {props.state}</Text>
     </View>
