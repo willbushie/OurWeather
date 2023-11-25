@@ -150,9 +150,11 @@ const SevenDayForecast = ({seven_day_data}) => {
 
 /* 7 Day Forecast - Single Day Forecast */
 const SevenDayForecastSingleDay = ({period}) => {
+  const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const timestamp = Object.keys(period)[0];
   /* pass to Time.tsx and get the day of the week */
-  const day_of_week = timestamp.substring(8,10);
+  const timestamp_data = ReadableISO(timestamp);
+  const day_of_week = weekdays[Number(timestamp_data.day_of_week)];
 
   /* setting morning variables */
   let m_name = '-';
