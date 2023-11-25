@@ -14,7 +14,7 @@ import React from 'react';
  * @return string
  *  ISO8601 timestamp (output: '2023-11-07T19:00:00-06:00')
  */
-function ConvertTimeWithOffset(timestamp: string, offset: string) {
+export function ConvertTimeWithOffset(timestamp: string, offset: string) {
   const readable_time = ReadableISO(timestamp);
 
   /* if timestamp and offset match */
@@ -180,7 +180,7 @@ exports.ConvertTimeWithOffset = ConvertTimeWithOffset;
  *    'offset':        '-06:00'
  *  }
  */
-function ReadableISO(timestamp: string) {
+export function ReadableISO(timestamp: string) {
   const year = timestamp.substring(0,4);
   const month = timestamp.substring(5,7);
   const date = timestamp.substring(8,10);
@@ -248,7 +248,7 @@ exports.TwentyFourHourConversion = TwentyFourHourConversion;
  *    }
  *  }
  */
-function GetCurrentDeviceTime() {
+export function GetCurrentDeviceTime() {
   /* Get device time items */
   const device_year_int = new Date().getFullYear();
   const device_year_str = device_year_int;

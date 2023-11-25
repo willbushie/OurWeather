@@ -16,6 +16,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {
+  ConvertTimeWithOffset,
+  ReadableISO,
+  GetCurrentDeviceTime,
+} from '../Handlers/Time.tsx';
 
 
 
@@ -99,7 +104,6 @@ const FortyEightHourForecast = ({forty_eight_hour_data}) => {
 
 /* 48 Hour Forecast - Single Hour Component */
 const FortyEightHourSingleHour = ({period}) => {
-  // this time should be converted to an actual time
   const start_time = period.startTime;
   const day_time = period.isDayTime;
   const temp = period.temperature;
@@ -108,10 +112,24 @@ const FortyEightHourSingleHour = ({period}) => {
   const icon_url = period.icon;
   const short_forecast = period.shortForecast;
 
+  /* make time conversions if necessary to display relative to user's time */
+  const device_time = GetCurrentDeviceTime();
+  const start_time_data = ReadableISO(start_time);
+  const device_offset = device_time.device.offset;
+  let hour_str = '';
+  if (start_time_data.offset != device_offset) {
+    const converted_timestamp = ConvertTimeWithOffset(start_time,device_offset);
+    const converted_time_data = ReadableISO(converted_timestamp);
+    hour_str = converted_time_data.twelve_hour + ' ' + converted_time_data.day_night;
+  }
+  else {
+    hour_str = start_time_data.twelve_hour + ' ' + start_time_data.day_night;
+  }
+
   return (
     <View style={styles.hour_container}>
-      <Text>{start_time}</Text>
-      <Text>{temp}</Text>
+      <Text>{hour_str}</Text>
+      <Text>{temp}°</Text>
       <Text></Text>
       <Text>{precip_percent}%</Text>
     </View>
