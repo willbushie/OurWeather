@@ -83,3 +83,15 @@ This article talks about the rules around DST, when it starts and when it ends. 
 [MDM Docs - Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 This documentation refers to the JavaScript `Date` object. This was helpful for obtaining the current device time and comparing it against the current UTC time. This documentation was discovered from [this Stackoverflow question](https://stackoverflow.com/questions/37271356/how-to-get-the-current-date-in-reactnative).
+
+## Frontend UI & UX
+
+This section lists resources which were used to help further understand certain UI items and UX flow. 
+
+[Expanding a Component (Stackoverflow)](https://stackoverflow.com/questions/72471761/how-to-create-expandable-view-for-product-details-in-react-native)
+
+For the seven day forecast, there is glanceable information. However, it would be helpful to get more detailed forecast information. To do this, an expanded view was needed. This Stackoverflow question and answer covers one method of attempting to accomplish that. 
+
+[Component State](https://reactnative.dev/docs/intro-react#state)
+
+This React Native document (specifically where it refers to State) was very helpful in understanding how components have "memory" and how you use that memory and change it to suit the desired functionality.

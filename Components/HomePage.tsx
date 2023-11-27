@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,6 +8,8 @@ import {
   useColorScheme,
   View,
   Image,
+  Animated,
+  TouchableOpacity,
 } from 'react-native';
 import {
   Colors,
@@ -225,12 +227,36 @@ const SevenDayForecastSingleDay = ({period}) => {
     day_precip_percent = (m_percent * m_weight) + (e_percent * e_weight);
   }
 
+  /* set state variables */
+  const [height] = useState(new Animated.Value(0));
+  let expanded = false;
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  /* set details of animation used for expanding */
+  useEffect(() => {
+    Animated.timing(height, {
+      toValue: !expanded ? 200 : 0,
+      duration: 150,
+      useNativeDriver: false,
+    }).start();
+  }, [expanded, height])
+
   return (
-    <View style={[styles.container, {flexDirection: 'row'}]}>
-      <Text>{day_of_week}</Text>
-      <Text style={[styles.seven_day_precip]}>{(day_precip_percent === null)? 0 :day_precip_percent}%</Text>
-      <Text style={[styles.seven_day_m_temp]}>{(m_temp === '-')? '-' : m_temp + '°'}</Text>
-      <Text style={[styles.seven_day_e_temp]}>{(e_temp === '-')? '-' : e_temp + '°'}</Text>
+    <View style={[styles.container, {flexDirection: 'column'}]}>
+      <TouchableOpacity onPress={() => {
+        setIsExpanded(!isExpanded);
+      }}>
+        {/* basic data shown at all times (expanded or not) */}
+        <Text>{day_of_week}</Text>
+        <Text style={[styles.seven_day_precip]}>{(day_precip_percent === null)? 0 :day_precip_percent}%</Text>
+        <Text style={[styles.seven_day_m_temp]}>{(m_temp === '-')? '-' : m_temp + '°'}</Text>
+        <Text style={[styles.seven_day_e_temp]}>{(e_temp === '-')? '-' : e_temp + '°'}</Text>
+      </TouchableOpacity>
+      {/* detailed information shown when expanded (conditional) */}
+      {isExpanded?
+        <View style={[styles.seven_day_detailed, {height}]}>
+          <Text>detailed info</Text>
+        </View> : <View />}
     </View>
   );
 };
@@ -314,5 +340,9 @@ const styles = StyleSheet.create({
   seven_day_e_temp: {
     position: 'absolute',
     left: '85%',
+  },
+  /* Seven day expanded, detailed info */
+  seven_day_detailed: {
+    backgroundColor: 'orange',
   },
 });
