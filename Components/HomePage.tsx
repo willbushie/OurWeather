@@ -141,17 +141,27 @@ const FortyEightHourSingleHour = ({period}) => {
 /* 7 Day Forecast - Home Page Component */
 const SevenDayForecast = ({seven_day_data}) => {
   const all_pairs = seven_day_data.paired_periods;
+  const [isExpanded, setIsExpanded] = useState(null);
+  const handleExpand = (rowId) => {
+    setIsExpanded(rowId);
+  };
   return (
     <View style={[styles.container, {flexDirection: 'column'}]}>
       {all_pairs.map((pair, index) => (
-        <SevenDayForecastSingleDay key={index} period={pair}/>
+        <SevenDayForecastSingleDay
+          key={index}
+          rowId={index}
+          isExpanded={isExpanded === index}
+          onExpand={handleExpand}
+          period={pair}
+        />
       ))}
     </View>
   );
 };
 
 /* 7 Day Forecast - Single Day Forecast */
-const SevenDayForecastSingleDay = ({period}) => {
+const SevenDayForecastSingleDay = ({rowId, isExpanded, onExpand, period}) => {
   const weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const timestamp = Object.keys(period)[0];
   /* pass to Time.tsx and get the day of the week */
@@ -230,7 +240,6 @@ const SevenDayForecastSingleDay = ({period}) => {
   /* set state variables */
   const [height] = useState(new Animated.Value(0));
   let expanded = false;
-  const [isExpanded, setIsExpanded] = useState(false);
 
   /* set details of animation used for expanding */
   useEffect(() => {
@@ -241,22 +250,24 @@ const SevenDayForecastSingleDay = ({period}) => {
     }).start();
   }, [expanded, height])
 
+  const toggleExpanded = () => {
+    onExpand(isExpanded? null : rowId);
+  };
+
   return (
     <View style={[styles.container, {flexDirection: 'column'}]}>
-      <TouchableOpacity onPress={() => {
-        setIsExpanded(!isExpanded);
-      }}>
+      <TouchableOpacity onPress={toggleExpanded}>
         {/* basic data shown at all times (expanded or not) */}
         <Text>{day_of_week}</Text>
         <Text style={[styles.seven_day_precip]}>{(day_precip_percent === null)? 0 :day_precip_percent}%</Text>
         <Text style={[styles.seven_day_m_temp]}>{(m_temp === '-')? '-' : m_temp + '°'}</Text>
         <Text style={[styles.seven_day_e_temp]}>{(e_temp === '-')? '-' : e_temp + '°'}</Text>
       </TouchableOpacity>
-      {/* detailed information shown when expanded (conditional) */}
-      {isExpanded?
+      {/* detailed information shown when expanded (conditional rendering) */}
+      {isExpanded &&
         <View style={[styles.seven_day_detailed, {height}]}>
           <Text>detailed info</Text>
-        </View> : <View />}
+        </View>}
     </View>
   );
 };
