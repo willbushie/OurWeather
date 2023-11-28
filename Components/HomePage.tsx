@@ -169,28 +169,28 @@ const SevenDayForecastSingleDay = ({rowId, isExpanded, onExpand, period}) => {
   const day_of_week = weekdays[Number(timestamp_data.day_of_week)];
 
   /* setting morning variables */
-  let m_name = '-';
-  let m_day_time = '-';
-  let m_temp = '-';
-  let m_temp_unit = '-';
-  let m_precip_percent = '-';
-  let m_wind_speed = '-';
-  let m_wind_direction = '-';
-  let m_icon_url = '-';
-  let m_short_forecast = '-';
-  let m_detailed_forecast = '-';
+  let m_name = '';
+  let m_day_time = '';
+  let m_temp = '';
+  let m_temp_unit = '';
+  let m_precip_percent = '';
+  let m_wind_speed = '';
+  let m_wind_direction = '';
+  let m_icon_url = '';
+  let m_short_forecast = '';
+  let m_detailed_forecast = '';
 
   /* setting evening variables */
-  let e_name = '-';
-  let e_day_time = '-';
-  let e_temp = '-';
-  let e_temp_unit = '-';
-  let e_precip_percent = '-';
-  let e_wind_speed = '-';
-  let e_wind_direction = '-';
-  let e_icon_url = '-';
-  let e_short_forecast = '-';
-  let e_detailed_forecast = '-';
+  let e_name = '';
+  let e_day_time = '';
+  let e_temp = '';
+  let e_temp_unit = '';
+  let e_precip_percent = '';
+  let e_wind_speed = '';
+  let e_wind_direction = '';
+  let e_icon_url = '';
+  let e_short_forecast = '';
+  let e_detailed_forecast = '';
 
   /* update morning variables */
   if (period[timestamp].morning != null) {
@@ -222,10 +222,10 @@ const SevenDayForecastSingleDay = ({rowId, isExpanded, onExpand, period}) => {
 
   /* calculate the day precipitation percentage */
   let day_precip_percent;
-  if (m_precip_percent === '-') {
+  if (m_precip_percent === '') {
     day_precip_percent = e_precip_percent;
   }
-  else if (e_precip_percent === '-') {
+  else if (e_precip_percent === '') {
     day_precip_percent = m_precip_percent;
   }
   else {
@@ -260,14 +260,34 @@ const SevenDayForecastSingleDay = ({rowId, isExpanded, onExpand, period}) => {
         {/* basic data shown at all times (expanded or not) */}
         <Text>{day_of_week}</Text>
         <Text style={[styles.seven_day_precip]}>{(day_precip_percent === null)? 0 :day_precip_percent}%</Text>
-        <Text style={[styles.seven_day_m_temp]}>{(m_temp === '-')? '-' : m_temp + '°'}</Text>
-        <Text style={[styles.seven_day_e_temp]}>{(e_temp === '-')? '-' : e_temp + '°'}</Text>
+        <Text style={[styles.seven_day_m_temp]}>{(m_temp === '')? '-' : m_temp + '°'}</Text>
+        <Text style={[styles.seven_day_e_temp]}>{(e_temp === '')? '-' : e_temp + '°'}</Text>
       </TouchableOpacity>
       {/* detailed information shown when expanded (conditional rendering) */}
       {isExpanded &&
-        <View style={[styles.seven_day_detailed, {height}]}>
-          <Text>detailed info</Text>
-        </View>}
+        <View style={[styles.seven_day_detailed]}>
+          {/* day information */}
+          {period[timestamp].morning != null &&
+            <View style={styles.seven_day_expanded_day}>
+              <Text>Day</Text>
+              <Text>{m_temp}°</Text>
+              <Text>{(m_precip_percent != '')? '0' : m_precip_percent}%</Text>
+              <Text>{m_wind_direction + m_wind_speed}</Text>
+              <Text>{m_detailed_forecast}</Text>
+            </View>
+          }
+          {/* day information */}
+          {period[timestamp].evening != null &&
+            <View style={styles.seven_day_expanded_night}>
+              <Text>Night</Text>
+              <Text>{e_temp}°</Text>
+              <Text>{(e_precip_percent != '')? '0' : e_precip_percent}%</Text>
+              <Text>{e_wind_direction + e_wind_speed}</Text>
+              <Text>{m_detailed_forecast}</Text>
+            </View>
+          }
+        </View>
+      }
     </View>
   );
 };
@@ -353,7 +373,9 @@ const styles = StyleSheet.create({
     left: '85%',
   },
   /* Seven day expanded, detailed info */
-  seven_day_detailed: {
-    backgroundColor: 'orange',
-  },
+  seven_day_detailed: {},
+  /* Seven day expanded - day info */
+  seven_day_expanded_day: {},
+  /* Seven day expanded - night info */
+  seven_day_expanded_night: {},
 });
