@@ -269,21 +269,19 @@ const SevenDayForecastSingleDay = ({rowId, isExpanded, onExpand, period}) => {
           {/* day information */}
           {period[timestamp].morning != null &&
             <View style={styles.seven_day_expanded_day}>
-              <Text>Day</Text>
-              <Text>{m_temp}°</Text>
-              <Text>{(m_precip_percent != '')? '0' : m_precip_percent}%</Text>
-              <Text>{m_wind_direction + m_wind_speed}</Text>
-              <Text>{m_detailed_forecast}</Text>
+              <Text>Day | {m_temp}°</Text>
+              <Text style={[{textAlign: 'right'}]}>{(m_precip_percent != '')? '0' : m_precip_percent}%</Text>
+              <Text style={[{textAlign: 'right'}]}>{m_wind_direction + m_wind_speed}</Text>
+              <Text style={[{textAlign: 'justify', marginTop: '2%'}]}>{m_detailed_forecast}</Text>
             </View>
           }
           {/* day information */}
           {period[timestamp].evening != null &&
             <View style={styles.seven_day_expanded_night}>
-              <Text>Night</Text>
-              <Text>{e_temp}°</Text>
-              <Text>{(e_precip_percent != '')? '0' : e_precip_percent}%</Text>
-              <Text>{e_wind_direction + e_wind_speed}</Text>
-              <Text>{m_detailed_forecast}</Text>
+              <Text>Night | {e_temp}°</Text>
+              <Text style={[{textAlign: 'right'}]}>{(e_precip_percent != '')? '0' : e_precip_percent}%</Text>
+              <Text style={[{textAlign: 'right'}]}>{e_wind_direction + e_wind_speed}</Text>
+              <Text style={[{textAlign: 'justify', marginTop: '2%'}]}>{m_detailed_forecast}</Text>
             </View>
           }
         </View>
@@ -373,9 +371,18 @@ const styles = StyleSheet.create({
     left: '85%',
   },
   /* Seven day expanded, detailed info */
-  seven_day_detailed: {},
+  seven_day_detailed: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '2%',
+  },
   /* Seven day expanded - day info */
-  seven_day_expanded_day: {},
+  seven_day_expanded_day: {
+    width: '50%',
+    paddingRight: '5%',
+  },
   /* Seven day expanded - night info */
-  seven_day_expanded_night: {},
+  seven_day_expanded_night: {
+    width: '50%',
+  },
 });
