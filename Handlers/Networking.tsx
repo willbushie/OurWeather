@@ -29,7 +29,6 @@ export async function Update() {
       'forty_eight_hour_data': await forty_eight_hour_data,
       'grid_data': await grid_data
     };
-    //console.log('./Handlers/Networking.tsx:Update:', all_data);
     return all_data;
   }
   catch (error) {
@@ -214,14 +213,12 @@ export async function GetCoordinates() {
     if (hasPermission) {
       Geolocation.getCurrentPosition(
         (position) => {
-          console.log('./Handlers/Networking.tsx:GetCoordinates:', position);
           const lat = position.coords.latitude;
           const long = position.coords.longitude;
           resolve({ lat, long });
         },
         (error) => {
           // See error code charts below.
-          console.log('./Handlers/Networking.tsx:GetCoordinates:', error.code, error.message);
           reject(error);
         },
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
