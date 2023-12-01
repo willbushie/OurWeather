@@ -1,6 +1,6 @@
 # Our Weather
 
-Our Weather is a free, quick, and simple to use mobile weather application. 
+Our Weather is a free, quick, and simple to use mobile weather application built with React Native. 
 
 **Project Status: In Development**
 
