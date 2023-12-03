@@ -54,7 +54,7 @@ The goal is to create a quick, easy to use React Native Android Application.
 
 - [x] Fetch weather data from the NOAA API and display it to the user.
 - [x] Obtain a devices current location (longitude & latitude), for fetching from the NOAA API.
-- [ ] Setup a simple "home page" for displaying current location weather data.
+- [x] Setup a simple "home page" for displaying current location weather data.
 - [ ] Allow saving of multiple locations.
 - [ ] Custom Geolocation API.
 - [ ] Local storage of weather data (for immediate updates).
@@ -80,7 +80,7 @@ Here are the steps I took to accomplish this project.
 |--|--|--|
 | README & Git Setup | 10 min | Format README and setup Git repos (local & remote). |
 | Development Environment Setup | 2 hrs | Download all dependencies and setup Android Studio. Had some issues getting device emulation to work correctly. |
-| Documentation | 1 hr 40 min | Any and all project documentation. |
+| Documentation | 2 hr 10 min | Any and all project documentation. |
 | Cleaning & Formatting Code | 35 min | Cleaning and correctly formatting previously written code. |
 | Frontend - Home Page | 13 hrs 20 min | Frontend home page for showing current/selected location weather information. |
 | Device Location Data | 4 hrs 50 min | Research and obtain location permissions from user device for precise current location weather. |
@@ -90,11 +90,15 @@ Here are the steps I took to accomplish this project.
 | Local Storage | 1 hr 20 min | Research and implement a local data storage solution. |
 | Testing | 4 hr 20 min | Writing and conducting Unit, E2E, and Integration tests. |
 
-**Current Project Total: 51 hrs 35 min**
+**Current Project Total: 52 hrs 5 min**
 
 ## What I Learned
 
 A list of things that I learned during this project.
+
+- Writing Unit tests with Jest and testing individual functions. 
+- How similar React Native is to React. 
+- How to manipulate and convert ISO8601 timestamps.
 
 ## Resources
 
