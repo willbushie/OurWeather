@@ -212,7 +212,7 @@ exports.ReadableISO = ReadableISO;
  * @return string
  *  12 hour equivalent (output: '01', output: '06')
  */
-function TwentyFourHourConversion(hour: string) {
+export function TwentyFourHourConversion(hour: string) {
     if (hour === '00' || hour === '12') {
         return '12';
     }
@@ -338,7 +338,7 @@ export function GetCurrentDeviceTime() {
  * @return boolean
  *  If daylight savings time is active or not
  */
-function DST(year: string, month: string, date: string, military: string) {
+export function DST(year: string, month: string, date: string, military: string) {
     const dst_rules = DSTRules(year);
     const dst_start = Number(dst_rules.dst_start);
     const dst_end = Number(dst_rules.dst_end);
@@ -381,7 +381,7 @@ exports.DST = DST;
  *    'dst_end': '5'     // Date in November when DST ends
  *  }
  */
-function DSTRules(year: string) {
+export function DSTRules(year: string) {
     /* Based on when the first day of the month is, when the second Sunday will fall. */
     const march_second_sunday_table = ['8','14','13','12','11','10','9'];
     const march_day_one = DayOfTheWeek(year,'03','01');
@@ -411,7 +411,7 @@ exports.DSTRules = DSTRules;
  * @return int
  *  Day of the week (Sunday: 0, Saturday: 6)
  */
-function DayOfTheWeek(year: string, month: string, date: string) {
+export function DayOfTheWeek(year: string, month: string, date: string) {
     const month_offset_table = [0,3,3,6,1,4,6,2,5,0,3,5];
     const month_offset_leap_table = [0,3,4,0,2,5,0,3,6,1,4,6];
     const year_int = Number(year);
@@ -434,7 +434,7 @@ exports.DayOfTheWeek = DayOfTheWeek;
  *
  * @return boolean
  */
-function LeapYear(year: string) {
+export function LeapYear(year: string) {
     const year_int = Number(year);
     if (year_int % 4 === 0) {
         if (year_int % 100 === 0 && year_int % 400 != 0) {
