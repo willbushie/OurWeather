@@ -3,9 +3,9 @@ import {
     Text,
     View,
 } from 'react-native';
-import { HomePage } from './Components/HomePage.tsx';
-import { Update } from './Handlers/Networking.tsx';
-import { RequestFineLocation } from './Handlers/Permissions.tsx';
+import { HomePage } from './Components/HomePage';
+import { Update } from './Handlers/Networking';
+import { RequestFineLocation } from './Handlers/Permissions';
 
 
 
