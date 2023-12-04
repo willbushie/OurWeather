@@ -11,7 +11,8 @@ export async function RequestFineLocation() {
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
             {
                 'title': 'WeatherApp',
-                'message': 'WeatherApp needs to access your location to automatically lookup weather at your current location.'
+                'message': 'WeatherApp needs to access your location to automatically lookup weather at your current location.',
+                'buttonPositive': 'Agree',
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
