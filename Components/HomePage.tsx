@@ -22,7 +22,7 @@ import {
     ConvertTimeWithOffset,
     ReadableISO,
     GetCurrentDeviceTime,
-} from '../Handlers/Time.tsx';
+} from '../Handlers/Time';
 
 
 
