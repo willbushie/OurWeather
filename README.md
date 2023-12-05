@@ -86,11 +86,11 @@ Here are the steps I took to accomplish this project.
 | Device Location Data | 4 hrs 50 min | Research and obtain location permissions from user device for precise current location weather. |
 | API Data | 8 hrs 20 min | Fetch forecast data from NOAA API and output to application. |
 | Time Handling | 12 hr 10 min | Handling device and API timestamps for easier formatting throughout that application. |
-| Data Cleaning & Formatting | 1 hr 30 min | Cleaning and formatting useful data obtained from the API. |
+| Data Cleaning & Formatting | 4 hr | Cleaning and formatting useful data obtained from the API. |
 | Local Storage | 1 hr 20 min | Research and implement a local data storage solution. |
 | Testing | 4 hr 20 min | Writing and conducting Unit, E2E, and Integration tests. |
 
-**Current Project Total: 52 hrs 50 min**
+**Current Project Total: 55 hrs 20 min**
 
 ## What I Learned
 
