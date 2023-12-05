@@ -22,7 +22,7 @@ export function ConvertTimeWithOffset(timestamp: string, offset: string) {
         return timestamp;
     }
 
-    const month_days = {
+    const month_days: {[index:number]:number} = {
         1: 30,
         3: 31,
         2: (LeapYear(readable_time.year))? 29 : 28,
@@ -57,11 +57,16 @@ export function ConvertTimeWithOffset(timestamp: string, offset: string) {
         const min_diff = Math.abs(stamp_offset_min_int) - Math.abs(offset_min_int);
         const hr_diff = Math.abs(stamp_offset_hr_int) - Math.abs(offset_hr_int);
 
-        let new_min = Number(readable_time.minute) + min_diff;
-        let new_hour = Number(readable_time.military_hour) + hr_diff;
-        let new_date = Number(readable_time.date);
-        let new_month = Number(readable_time.month);
-        let new_year = Number(readable_time.year);
+        let new_min_int = Number(readable_time.minute) + min_diff;
+        let new_min_str = String(new_min_int);
+        let new_hour_int = Number(readable_time.military_hour) + hr_diff;
+        let new_hour_str = String(new_hour_int);
+        let new_date_int = Number(readable_time.date);
+        let new_date_str = String(new_date_int);
+        let new_month_int = Number(readable_time.month);
+        let new_month_str = String(new_month_int);
+        let new_year_int = Number(readable_time.year);
+        let new_year_str = String(new_year_int);
 
         /* new minute >= 60 - next hour | NOT AS GENERAL AS POSSIBLE */
         /* if (new_min >= 60) {
@@ -71,34 +76,36 @@ export function ConvertTimeWithOffset(timestamp: string, offset: string) {
         else {
             new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
         } */
-        new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+        new_min_str = (new_min_int < 10)? '0' + new_min_str: new_min_str; 
         /* new hour > 23 - next day */
-        if (new_hour > 23) {
-            new_hour = (new_hour - 24 < 10)? '0' + String(new_hour - 24): String(new_hour - 24);
-            new_date += 1;
+        if (new_hour_int > 23) {
+            new_hour_str = (new_hour_int - 24 < 10)? '0' + String(new_hour_int - 24): String(new_hour_int - 24);
+            new_date_int += 1;
+            new_date_str = String(new_date_int);
         }
         else {
-            new_hour = (new_hour < 10)? '0' + String(new_hour): String(new_hour);
+            new_hour_str = (new_hour_int < 10)? '0' + new_hour_str: new_hour_str;
         }
         /* new date > 28, 29, 30, 31 - next month */
-        if (new_date > month_days[new_month]) {
-            new_date = '01';
-            new_month += 1;
+        if (new_date_int > month_days[new_month_int]) {
+            new_date_str = '01';
+            new_month_int += 1;
+            new_month_str = String(new_month_int);
         }
         else {
-            new_date = (new_date < 10)? '0' + String(new_date): String(new_date);
+            new_date_str = (new_date_int < 10)? '0' + new_date_str: new_date_str;
         }
         /* new month > 12 - next year */
-        if (new_month > 12) {
-            new_month = (new_month - 12 < 10)? '0' + String(new_month - 12): String(new_month - 12);
-            new_year = String(new_year + 1);
+        if (new_month_int > 12) {
+            new_month_str = (new_month_int - 12 < 10)? '0' + String(new_month_int - 12): String(new_month_int - 12);
+            new_year_str = String(new_year_int + 1);
         }
         else {
-            new_month = (new_month < 10)? '0' + String(new_month): String(new_month);
+            new_month_str = (new_month_int < 10)? '0' + new_month_str: new_month_str;
         }
 
-        let return_timestamp = new_year + '-' + new_month + '-' + new_date + 'T';
-        return_timestamp += new_hour + ':' + new_min + ':' + readable_time.second;
+        let return_timestamp = new_year_str + '-' + new_month_str + '-' + new_date_str + 'T';
+        return_timestamp += new_hour_str + ':' + new_min_str + ':' + readable_time.second;
         return_timestamp += offset;
 
         return return_timestamp;
@@ -108,11 +115,16 @@ export function ConvertTimeWithOffset(timestamp: string, offset: string) {
         const min_diff = Math.abs(offset_min_int) - Math.abs(stamp_offset_min_int);
         const hr_diff = Math.abs(offset_hr_int) - Math.abs(stamp_offset_hr_int);
 
-        let new_min = Number(readable_time.minute) - min_diff;
-        let new_hour = Number(readable_time.military_hour) - hr_diff;
-        let new_date = Number(readable_time.date);
-        let new_month = Number(readable_time.month);
-        let new_year = Number(readable_time.year);
+        let new_min_int = Number(readable_time.minute) - min_diff;
+        let new_min_str = String(new_min_int);
+        let new_hour_int = Number(readable_time.military_hour) - hr_diff;
+        let new_hour_str = String(new_hour_int);
+        let new_date_int = Number(readable_time.date);
+        let new_date_str = String(new_date_int);
+        let new_month_int = Number(readable_time.month);
+        let new_month_str = String(new_month_int);
+        let new_year_int = Number(readable_time.year);
+        let new_year_str = String(new_year_int);
 
         /* new minute < 0 - prev hour | NOT AS GENERAL AS POSSIBLE */
         /* if (new_min <= 0) {
@@ -122,35 +134,37 @@ export function ConvertTimeWithOffset(timestamp: string, offset: string) {
         else {
             new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
         } */
-        new_min = (new_min < 10)? '0' + String(new_min): String(new_min);
+        new_min_str = (new_min_int < 10)? '0' + new_min_str: new_min_str;
         /* new hour < 0 - prev day */
-        if (new_hour < 0) {
-            new_hour = (new_hour + 24 < 10)? '0' + String(new_hour + 24): String(new_hour + 24);
-            new_date -= 1;
+        if (new_hour_int < 0) {
+            new_hour_str = (new_hour_int + 24 < 10)? '0' + String(new_hour_int + 24): String(new_hour_int + 24);
+            new_date_int -= 1;
+            new_date_str = String(new_date_int);
         }
         else {
-            new_hour = (new_hour < 10)? '0' + String(new_hour): String(new_hour);
+            new_hour_str = (new_hour_int < 10)? '0' + new_hour_str: new_hour_str;
         }
         /* new date < 1 - prev month */
-        if (new_date < 1) {
-            new_month -= 1;
-            const new_month_temp = (new_month < 1)? 12: new_month;
-            new_date = String(month_days[new_month_temp]);
+        if (new_date_int < 1) {
+            new_month_int -= 1;
+            new_month_str = String(new_month_int);
+            const new_month_temp = (new_month_int < 1)? 12: new_month_int;
+            new_date_str = String(month_days[new_month_temp]);
         }
         else {
-            new_date = (new_date < 10)? '0' + String(new_date): String(new_date);
+            new_date_str = (new_date_int < 10)? '0' + new_date_str: new_date_str;
         }
         /* new month < 1 - prev year */
-        if (new_month < 1) {
-            new_month = '12';
-            new_year = String(new_year - 1);
+        if (new_month_int < 1) {
+            new_month_str = '12';
+            new_year_str = String(new_year_int - 1);
         }
         else {
-            new_month = (new_month < 10)? '0' + String(new_month): String(new_month);
+            new_month_str = (new_month_int < 10)? '0' + new_month_str: new_month_str;
         }
 
-        let return_timestamp = new_year + '-' + new_month + '-' + new_date + 'T';
-        return_timestamp += new_hour + ':' + new_min + ':' + readable_time.second;
+        let return_timestamp = new_year_str + '-' + new_month_str + '-' + new_date_str + 'T';
+        return_timestamp += new_hour_str + ':' + new_min_str + ':' + readable_time.second;
         return_timestamp += offset;
 
         return return_timestamp;
