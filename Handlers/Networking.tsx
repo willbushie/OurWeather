@@ -18,10 +18,10 @@ import appConfig from '../app.json';
  */
 export async function Update() {
     try {
-        const coordinates = await GetCoordinates();
+        const coordinates: Coordinates = await GetCoordinates();
         const lat = coordinates.lat;
         const long = coordinates.long;
-        const init_data = await RequestAllWeatherWithCoordinates(lat, long);
+        const init_data: InitData = await RequestAllWeatherWithCoordinates(String(lat), String(long));
         const seven_day_data = RequestSevenDayWeather(await init_data.seven_day_url);
         const forty_eight_hour_data = RequestFortyEightHourWeather(await init_data.forty_eight_hour_url);
         const grid_data = RequestGridData(await init_data.grid_data_url)
@@ -34,7 +34,7 @@ export async function Update() {
         return all_data;
     }
     catch (error) {
-        console.error('./Handlers/Networking.tsx:Update:', error.message);
+        console.error('./Handlers/Networking.tsx:Update:', error);
     }
 };
 
@@ -79,7 +79,7 @@ export async function RequestAllWeatherWithCoordinates(lat, long) {
  *
  * @return array
  */
-export async function RequestSevenDayWeather(url) {
+export async function RequestSevenDayWeather(url: string) {
     try {
         const response = await fetch(
             url,
@@ -102,6 +102,37 @@ export async function RequestSevenDayWeather(url) {
 };
 
 /**
+ * Interface Periods (used in `SortDayPeriods()`)
+ */
+interface Period {
+    number: number,
+    name: string,
+    startTime: string,
+    endTime: string,
+    isDayTime: boolean,
+    temperature: number,
+    temperatureUnit: string,
+    temperatureTrend: number|null,
+    probabilityOfPrecipitation: {
+        unitCode: string;
+        value: number|null;
+    };
+    dewpoint: {
+        unitCode: string;
+        value: number|null;
+    };
+    relativeHumidity: {
+        unitCode: string;
+        value: number|null;
+    };
+    windSpeed: string;
+    windDirection: string;
+    icon: string;
+    shortForecast: string;
+    detailedForecast: string;
+}
+
+/**
  * Sort all periods from seven day forecast into
  *  pairs or the same day (morning & evening)
  *
@@ -116,7 +147,7 @@ export async function RequestSevenDayWeather(url) {
  *  {},...
  *  }]
  */
-function SortDayPeriods(periods: Array<Object>) {
+function SortDayPeriods(periods: Array<Period>) {
     let sorted_periods: { [key: string]: { morning: Object | null; evening: Object | null; } }[] = [];
 
     for (let index = 0; index < periods.length; index++) {
@@ -157,7 +188,7 @@ function SortDayPeriods(periods: Array<Object>) {
  *
  * @return array
  */
-export async function RequestFortyEightHourWeather(url) {
+export async function RequestFortyEightHourWeather(url: string) {
     try {
         const response = await fetch(
             url,
@@ -185,7 +216,7 @@ export async function RequestFortyEightHourWeather(url) {
  *
  * @return array
  */
-export async function RequestGridData(url) {
+export async function RequestGridData(url: string) {
     try {
         const response = await fetch(
             url,
@@ -205,11 +236,19 @@ export async function RequestGridData(url) {
 };
 
 /**
+ * Interface Coordinates (used in `GetCoordinates()`)
+ */
+interface Coordinates{
+    lat: number;
+    long: number;
+}
+
+/**
  * Get user coordinates for current weather API call
  *
  * @return array
  */
-export async function GetCoordinates() {
+export async function GetCoordinates(): Promise<Coordinates> {
     const hasPermission = await hasLocationPermission();
     return new Promise((resolve, reject) => {
         if (hasPermission) {
