@@ -88,9 +88,9 @@ Here are the steps I took to accomplish this project.
 | Time Handling | 12 hr 10 min | Handling device and API timestamps for easier formatting throughout that application. |
 | Data Cleaning & Formatting | 4 hr 30 min | Cleaning and formatting useful data obtained from the API. |
 | Local Storage | 1 hr 20 min | Research and implement a local data storage solution. |
-| Testing | 4 hr 20 min | Writing and conducting Unit, E2E, and Integration tests. |
+| Testing | 6 hr 35 min | Writing and conducting Unit, E2E, and Integration tests. |
 
-**Current Project Total: 56 hrs 25 min**
+**Current Project Total: 58 hrs 40 min**
 
 ## What I Learned
 
